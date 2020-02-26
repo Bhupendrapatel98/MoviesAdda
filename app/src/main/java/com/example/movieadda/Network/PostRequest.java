@@ -19,5 +19,9 @@ public interface PostRequest {
     @GET("movie/upcoming")
     Call<UpcomingMovie>getUpcomingMovie(@Query("api_key")String key);
 
+    @GET("movie/popular")
+    Call<UpcomingMovie>getPopularMovie(@Query("api_key")String key);
+
+
 
 }

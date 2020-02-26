@@ -33,8 +33,8 @@ import retrofit2.Retrofit;
 public class HomeFragment extends Fragment {
 
     private TextView trending_more;
-    private RecyclerView trending_recycler,trending_tvs_recycler,upcoming_mov_recycler,popular_mov_recycler,
-    top_rat_recycler;
+    private RecyclerView trending_recycler, trending_tvs_recycler, upcoming_mov_recycler, popular_mov_recycler,
+            top_rat_recycler;
 
 
     public HomeFragment() {
@@ -55,26 +55,53 @@ public class HomeFragment extends Fragment {
         popular_mov_recycler = view.findViewById(R.id.popular_mov_recycler);
         top_rat_recycler = view.findViewById(R.id.top_rat_recycler);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         trending_recycler.setLayoutManager(layoutManager);
 
-        LinearLayoutManager tvshow_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager tvshow_layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         trending_tvs_recycler.setLayoutManager(tvshow_layoutManager);
 
-        LinearLayoutManager upcoming_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager upcoming_layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         upcoming_mov_recycler.setLayoutManager(upcoming_layoutManager);
-//
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-//        popular_mov_recycler.setLayoutManager(layoutManager);
-//
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-//        top_rat_recycler.setLayoutManager(layoutManager);
+
+        LinearLayoutManager popular_layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        popular_mov_recycler.setLayoutManager(popular_layoutManager);
+
+        LinearLayoutManager top_rate_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        top_rat_recycler.setLayoutManager(layoutManager);
 
         trendingMovies();
         trendingTvShow();
         upcomigMovie();
+        popularMovie();
+        topRatedMovie();
 
-       return view;
+        return view;
+    }
+
+    private void topRatedMovie() {
+    }
+
+    private void popularMovie() {
+
+        RetrofitClint.upcomig_mov_retrofit(Constants.BASE_URL)
+                .create(PostRequest.class)
+                .getPopularMovie(Constants.key)
+                .enqueue(new Callback<UpcomingMovie>() {
+                    @Override
+                    public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
+                        Log.i("msbfcsjdh", "onResponse: " + response);
+                        Log.i("msbfcsjdh", "onResponse: " + response.body());
+
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        popular_mov_recycler.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpcomingMovie> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void upcomigMovie() {
@@ -85,10 +112,10 @@ public class HomeFragment extends Fragment {
                 .enqueue(new Callback<UpcomingMovie>() {
                     @Override
                     public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
-                        Log.i("msbfcsjdh", "onResponse: "+response);
-                        Log.i("msbfcsjdh", "onResponse: "+response.body());
+                        Log.i("msbfcsjdh", "onResponse: " + response);
+                        Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(),response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
                         upcoming_mov_recycler.setAdapter(adapter);
                     }
 
@@ -107,10 +134,10 @@ public class HomeFragment extends Fragment {
                 .enqueue(new Callback<TrendingTvShow>() {
                     @Override
                     public void onResponse(Call<TrendingTvShow> call, Response<TrendingTvShow> response) {
-                        Log.i("zmcbsjdhsvj", "onResponse: "+response);
-                        Log.i("zmcbsjdhsvj", "onResponse: "+response.body());
+                        Log.i("zmcbsjdhsvj", "onResponse: " + response);
+                        Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(),response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
                         trending_tvs_recycler.setAdapter(adapter);
                     }
 
@@ -123,7 +150,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void trendingMovies(){
+    public void trendingMovies() {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(PostRequest.class)
@@ -131,10 +158,10 @@ public class HomeFragment extends Fragment {
                 .enqueue(new Callback<TrendingMoviesReq>() {
                     @Override
                     public void onResponse(Call<TrendingMoviesReq> call, Response<TrendingMoviesReq> response) {
-                        Log.i("jsdhvjsd", "onResponse: "+response);
-                        Log.i("jsdhvjsd", "onResponse: "+response.body());
+                        Log.i("jsdhvjsd", "onResponse: " + response);
+                        Log.i("jsdhvjsd", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(),response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
                         trending_recycler.setAdapter(adapter);
                     }
 
