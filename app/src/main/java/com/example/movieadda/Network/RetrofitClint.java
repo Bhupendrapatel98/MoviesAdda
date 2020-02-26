@@ -9,6 +9,8 @@ public class RetrofitClint {
 
     private static Retrofit tvshow_retrofit;
 
+    private static Retrofit upcomig_mov_retrofit;
+
     public static Retrofit getRetrofit(String s) {
         if(retrofit == null)
             return   retrofit  = new Retrofit.Builder()
@@ -22,6 +24,18 @@ public class RetrofitClint {
     }
 
     public static Retrofit getTvShowRetrofit(String s) {
+        if(retrofit == null)
+            return   retrofit  = new Retrofit.Builder()
+                    .baseUrl(s)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+        else
+            return retrofit;
+
+    }
+
+    public static Retrofit upcomig_mov_retrofit(String s) {
         if(retrofit == null)
             return   retrofit  = new Retrofit.Builder()
                     .baseUrl(s)

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
 import com.example.movieadda.Model.TrendingMoviesReq;
 import com.example.movieadda.Model.TrendingTvShow;
+import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.PostRequest;
 import com.example.movieadda.Network.RetrofitClint;
@@ -71,8 +72,31 @@ public class HomeFragment extends Fragment {
 
         trendingMovies();
         trendingTvShow();
+        upcomigMovie();
 
        return view;
+    }
+
+    private void upcomigMovie() {
+
+        RetrofitClint.upcomig_mov_retrofit(Constants.BASE_URL)
+                .create(PostRequest.class)
+                .getUpcomingMovie(Constants.key)
+                .enqueue(new Callback<UpcomingMovie>() {
+                    @Override
+                    public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
+                        Log.i("msbfcsjdh", "onResponse: "+response);
+                        Log.i("msbfcsjdh", "onResponse: "+response.body());
+
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(),response.body().getResults());
+                        upcoming_mov_recycler.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpcomingMovie> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void trendingTvShow() {
