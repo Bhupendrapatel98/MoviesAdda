@@ -13,6 +13,8 @@ public class RetrofitClint {
 
     private static Retrofit popular_mov_retrofit;
 
+    private static Retrofit toprated_mov_retrofit;
+
     public static Retrofit getRetrofit(String s) {
         if(retrofit == null)
             return   retrofit  = new Retrofit.Builder()
@@ -49,6 +51,18 @@ public class RetrofitClint {
 
     }
     public static Retrofit popular_mov_retrofit(String s) {
+        if(retrofit == null)
+            return   retrofit  = new Retrofit.Builder()
+                    .baseUrl(s)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+        else
+            return retrofit;
+
+    }
+
+    public static Retrofit toprated_mov_retrofit(String s) {
         if(retrofit == null)
             return   retrofit  = new Retrofit.Builder()
                     .baseUrl(s)

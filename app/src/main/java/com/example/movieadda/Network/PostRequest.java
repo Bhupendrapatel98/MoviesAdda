@@ -1,5 +1,7 @@
 package com.example.movieadda.Network;
 
+import com.example.movieadda.Model.PopularMovie;
+import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrendingMoviesReq;
 import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Model.UpcomingMovie;
@@ -20,7 +22,10 @@ public interface PostRequest {
     Call<UpcomingMovie>getUpcomingMovie(@Query("api_key")String key);
 
     @GET("movie/popular")
-    Call<UpcomingMovie>getPopularMovie(@Query("api_key")String key);
+    Call<PopularMovie>getPopularMovie(@Query("api_key")String key);
+
+    @GET("movie/top_rated")
+    Call<TopRAted>getTopRatedMovie(@Query("api_key")String key);
 
 
 

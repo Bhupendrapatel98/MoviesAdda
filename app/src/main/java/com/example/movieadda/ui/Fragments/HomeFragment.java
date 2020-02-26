@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
+import com.example.movieadda.Model.PopularMovie;
+import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrendingMoviesReq;
 import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Model.UpcomingMovie;
@@ -68,7 +70,7 @@ public class HomeFragment extends Fragment {
         popular_mov_recycler.setLayoutManager(popular_layoutManager);
 
         LinearLayoutManager top_rate_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-        top_rat_recycler.setLayoutManager(layoutManager);
+        top_rat_recycler.setLayoutManager(top_rate_layoutManager);
 
         trendingMovies();
         trendingTvShow();
@@ -80,16 +82,36 @@ public class HomeFragment extends Fragment {
     }
 
     private void topRatedMovie() {
+
+        RetrofitClint.toprated_mov_retrofit(Constants.BASE_URL)
+                .create(PostRequest.class)
+                .getTopRatedMovie(Constants.key)
+                .enqueue(new Callback<TopRAted>() {
+                    @Override
+                    public void onResponse(Call<TopRAted> call, Response<TopRAted> response) {
+
+                        Log.i("msbfcsjdh", "onResponse: " + response);
+                        Log.i("msbfcsjdh", "onResponse: " + response.body());
+
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        top_rat_recycler.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<TopRAted> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void popularMovie() {
 
-        RetrofitClint.upcomig_mov_retrofit(Constants.BASE_URL)
+        RetrofitClint.popular_mov_retrofit(Constants.BASE_URL)
                 .create(PostRequest.class)
                 .getPopularMovie(Constants.key)
-                .enqueue(new Callback<UpcomingMovie>() {
+                .enqueue(new Callback<PopularMovie>() {
                     @Override
-                    public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
+                    public void onResponse(Call<PopularMovie> call, Response<PopularMovie> response) {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
@@ -98,7 +120,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<UpcomingMovie> call, Throwable t) {
+                    public void onFailure(Call<PopularMovie> call, Throwable t) {
 
                     }
                 });
