@@ -4,15 +4,17 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    >
+    android:layout_marginTop="10dp"
+    android:background="@color/background"
+    android:layout_marginLeft="10dp"
+    android:id="@+id/main">
 
     <androidx.cardview.widget.CardView
 
         android:layout_width="100dp"
         android:layout_height="150dp"
         app:cardCornerRadius="10dp"
-        android:layout_marginLeft="7dp">
+        >
 
         <ImageView
             android:id="@+id/trending_m_img"
@@ -23,12 +25,15 @@
 
     </androidx.cardview.widget.CardView>
     <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
         android:id="@+id/trending_m_name"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="movie"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textColor="#fff"
-        android:gravity="center"/>
+        android:gravity="center"
+        />
 
 </LinearLayout>

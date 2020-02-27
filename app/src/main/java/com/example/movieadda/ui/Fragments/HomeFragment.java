@@ -20,8 +20,9 @@ import com.example.movieadda.Model.TrendingMoviesReq;
 import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
-import com.example.movieadda.Network.PostRequest;
+import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
+import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
 
 import retrofit2.Call;
@@ -83,8 +84,8 @@ public class HomeFragment extends Fragment {
 
     private void topRatedMovie() {
 
-        RetrofitClint.toprated_mov_retrofit(Constants.BASE_URL)
-                .create(PostRequest.class)
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(MovieRequest.class)
                 .getTopRatedMovie(Constants.key)
                 .enqueue(new Callback<TopRAted>() {
                     @Override
@@ -106,8 +107,8 @@ public class HomeFragment extends Fragment {
 
     private void popularMovie() {
 
-        RetrofitClint.popular_mov_retrofit(Constants.BASE_URL)
-                .create(PostRequest.class)
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(MovieRequest.class)
                 .getPopularMovie(Constants.key)
                 .enqueue(new Callback<PopularMovie>() {
                     @Override
@@ -128,8 +129,8 @@ public class HomeFragment extends Fragment {
 
     private void upcomigMovie() {
 
-        RetrofitClint.upcomig_mov_retrofit(Constants.BASE_URL)
-                .create(PostRequest.class)
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(MovieRequest.class)
                 .getUpcomingMovie(Constants.key)
                 .enqueue(new Callback<UpcomingMovie>() {
                     @Override
@@ -150,8 +151,8 @@ public class HomeFragment extends Fragment {
 
     private void trendingTvShow() {
 
-        RetrofitClint.getTvShowRetrofit(Constants.BASE_URL)
-                .create(PostRequest.class)
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(TrendingReq.class)
                 .getTrendingTvShow(Constants.key)
                 .enqueue(new Callback<TrendingTvShow>() {
                     @Override
@@ -175,7 +176,7 @@ public class HomeFragment extends Fragment {
     public void trendingMovies() {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
-                .create(PostRequest.class)
+                .create(TrendingReq.class)
                 .getTrendingMovie(Constants.key)
                 .enqueue(new Callback<TrendingMoviesReq>() {
                     @Override
