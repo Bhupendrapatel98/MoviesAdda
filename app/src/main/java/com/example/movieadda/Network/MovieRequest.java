@@ -1,5 +1,6 @@
 package com.example.movieadda.Network;
 
+import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.TopRAted;
@@ -23,5 +24,8 @@ public interface MovieRequest {
 
     @GET("movie/{id}")
     Call<InfoModel>allDetail(@Path("id")String id,@Query("api_key")String key);
+
+    @GET("movie/{id}/credits")
+    Call<CrewModel> crewDetail(@Path("id")String id,@Query("api_key")String key);
 
 }

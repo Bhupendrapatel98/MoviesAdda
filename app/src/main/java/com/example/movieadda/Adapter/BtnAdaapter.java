@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movieadda.Model.ButtonModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.R;
 
@@ -16,8 +17,13 @@ import java.util.List;
 
 public class BtnAdaapter extends RecyclerView.Adapter<BtnAdaapter.BtnViewHolder> {
 
-    List<InfoModel> list;
+    List<InfoModel.Genre> list;
     Context context;
+
+    public BtnAdaapter(List<InfoModel.Genre> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -30,7 +36,7 @@ public class BtnAdaapter extends RecyclerView.Adapter<BtnAdaapter.BtnViewHolder>
     @Override
     public void onBindViewHolder(@NonNull BtnViewHolder holder, int position) {
 
-        //holder.btn.setText();
+        holder.btn.setText(list.get(position).getName());
     }
 
     @Override
