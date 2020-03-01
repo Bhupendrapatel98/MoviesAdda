@@ -4,6 +4,7 @@ import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.TopRAted;
+import com.example.movieadda.Model.TrailersModel;
 import com.example.movieadda.Model.UpcomingMovie;
 
 import retrofit2.Call;
@@ -27,5 +28,8 @@ public interface MovieRequest {
 
     @GET("movie/{id}/credits")
     Call<CrewModel> crewDetail(@Path("id")String id,@Query("api_key")String key);
+
+    @GET("movie/{id}/videos")
+    Call<TrailersModel> trail_Detail(@Path("id")String id, @Query("api_key")String key);
 
 }

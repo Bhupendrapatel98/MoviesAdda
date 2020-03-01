@@ -21,9 +21,11 @@ import android.widget.TextView;
 
 import com.example.movieadda.Adapter.BtnAdaapter;
 import com.example.movieadda.Adapter.CrewAdapter;
+import com.example.movieadda.Adapter.TrailersAdapter;
 import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.Model.TopRAted;
+import com.example.movieadda.Model.TrailersModel;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
@@ -43,8 +45,8 @@ public class InfoFragment extends Fragment {
 
     TextView overview,fact_title,status,runtime,release,language,budget,revenue;
     String id;
-    RecyclerView btn_recycler,crew_recycler;
-    TextView production_com_name;
+    RecyclerView btn_recycler,crew_recycler,trailer_recycler;
+    TextView production_com_name,top_title;
     ImageView backdrop_path,poster_path;
 
 
@@ -63,6 +65,7 @@ public class InfoFragment extends Fragment {
         overview = view.findViewById(R.id.overview);
         btn_recycler = view.findViewById(R.id.btn_recycler);
         crew_recycler = view.findViewById(R.id.crew_recycler);
+        trailer_recycler = view.findViewById(R.id.trailer_recycler);
         production_com_name = view.findViewById(R.id.production_com_name);
         fact_title = view.findViewById(R.id.fact_title);
         status = view.findViewById(R.id.status);
@@ -73,17 +76,45 @@ public class InfoFragment extends Fragment {
         revenue = view.findViewById(R.id.revenue);
         poster_path = view.findViewById(R.id.poster_path);
         backdrop_path = view.findViewById(R.id.backdrop_path);
+        top_title = view.findViewById(R.id.top_title);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
         btn_recycler.setLayoutManager(layoutManager);
 
         crew_recycler.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
+        LinearLayoutManager trailer_layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+        trailer_recycler.setLayoutManager(trailer_layoutManager);
+
 
         allDetail();
         crew();
+        trailers();
 
         return view;
+    }
+
+    private void trailers() {
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(MovieRequest.class)
+                .trail_Detail(id,Constants.key)
+                .enqueue(new Callback<TrailersModel>() {
+                    @Override
+                    public void onResponse(Call<TrailersModel> call, Response<TrailersModel> response) {
+
+                        Log.i("zmcbsjdchj", "onResponse: "+response);
+                        Log.i("zmcbsjdchj", "onResponse: "+response.body());
+
+                        TrailersAdapter adapter = new TrailersAdapter(getActivity(),response.body().getResults());
+                        trailer_recycler.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<TrailersModel> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void crew() {
@@ -147,7 +178,7 @@ public class InfoFragment extends Fragment {
                             revenue.setText(""+response.body().getRevenue());
                             Picasso.get().load(Constants.Image_URL+response.body().getBackdropPath()).into(backdrop_path);
                             Picasso.get().load(Constants.Image_URL+response.body().getPosterPath()).into(poster_path);
-
+                            top_title.setText(response.body().getTitle());
                             BtnAdaapter adaapter = new BtnAdaapter(response.body().getGenres(),getContext());
                             btn_recycler.setAdapter(adaapter);
                         }

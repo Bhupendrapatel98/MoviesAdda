@@ -38,6 +38,7 @@
             android:textColor="#fff"
             android:textSize="16sp"/>
         <TextView
+            android:id="@+id/top_title"
             android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,12 +57,16 @@
         android:layout_marginRight="10dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/add"/>
+            android:layout_gravity="center"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/add"
+            android:layout_marginRight="10dp"
+            />
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/bookmark"/>
 
     </LinearLayout>
@@ -69,7 +74,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/btn_recycler"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -80,15 +85,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/light_gray"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"
         android:text="jbhdsjs" />
 
     <View
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/light_gray"
-        android:layout_margin="10dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,6 +104,7 @@
         android:layout_marginLeft="10dp">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -116,12 +124,12 @@
                 android:layout_height="wrap_content"
                 android:text="Show all"
                 android:textColor="#F44336"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:id="@+id/crew_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -133,8 +141,21 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/light_gray"
-        android:layout_margin="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trailers"
+            android:textSize="22sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="12dp"
+        android:id="@+id/trailer_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -144,9 +165,20 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/light_gray"
-        android:layout_margin="10dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Media"
+            android:textSize="22sp"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/white"/>
         <LinearLayout
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -395,6 +427,7 @@
                 android:textColor="@color/white"/>
         <TextView
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="12dp"
             android:id="@+id/production_com_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
