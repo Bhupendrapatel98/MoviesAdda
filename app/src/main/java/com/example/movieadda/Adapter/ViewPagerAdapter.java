@@ -28,7 +28,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case  0 :
                 return new InfoFragment(id);
             case 1:
-                return new CastFragment();
+                return new CastFragment(id);
             case 2:
                 return new ReviewsFragment();
             case 3:
