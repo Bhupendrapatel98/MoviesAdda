@@ -7,6 +7,12 @@ import java.util.List;
 
 public class Result {
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("profile_path")
+    @Expose
+    private String profilePath;
     @SerializedName("popularity")
     @Expose
     private Double popularity;
@@ -160,6 +166,22 @@ public class Result {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
     }
 
 }

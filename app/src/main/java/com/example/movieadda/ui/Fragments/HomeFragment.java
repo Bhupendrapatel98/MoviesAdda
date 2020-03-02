@@ -14,13 +14,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
+import com.example.movieadda.Adapter.TrendingPersonAdapter;
+import com.example.movieadda.Model.PersonModel;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrendingMoviesReq;
+import com.example.movieadda.Model.TrendingPerson;
 import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
+import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
@@ -28,7 +32,6 @@ import com.example.movieadda.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +40,7 @@ public class HomeFragment extends Fragment {
 
     private TextView trending_more;
     private RecyclerView trending_recycler, trending_tvs_recycler, upcoming_mov_recycler, popular_mov_recycler,
-            top_rat_recycler;
+            top_rat_recycler,trending_person_recycler;
 
 
     public HomeFragment() {
@@ -57,6 +60,7 @@ public class HomeFragment extends Fragment {
         upcoming_mov_recycler = view.findViewById(R.id.upcoming_mov_recycler);
         popular_mov_recycler = view.findViewById(R.id.popular_mov_recycler);
         top_rat_recycler = view.findViewById(R.id.top_rat_recycler);
+        trending_person_recycler = view.findViewById(R.id.trending_person_recycler);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         trending_recycler.setLayoutManager(layoutManager);
@@ -73,13 +77,40 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager top_rate_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         top_rat_recycler.setLayoutManager(top_rate_layoutManager);
 
+        LinearLayoutManager trending_person_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        trending_person_recycler.setLayoutManager(trending_person_layoutManager);
+
         trendingMovies();
         trendingTvShow();
         upcomigMovie();
         popularMovie();
         topRatedMovie();
+        trendingPerson();
 
         return view;
+    }
+
+    private void trendingPerson() {
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(TrendingReq.class)
+                .getTrendingPerson(Constants.key)
+                .enqueue(new Callback<TrendingPerson>() {
+                    @Override
+                    public void onResponse(Call<TrendingPerson> call, Response<TrendingPerson> response) {
+
+                        Log.i("msdjbshj", "onResponse: "+response);
+                        Log.i("msdjbshj", "onResponse: "+response.body());
+
+                        TrendingPersonAdapter trendingPersonAdapter = new TrendingPersonAdapter(response.body().getResults(),getContext());
+                        trending_person_recycler.setAdapter(trendingPersonAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<TrendingPerson> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void topRatedMovie() {

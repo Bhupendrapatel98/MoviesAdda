@@ -1,6 +1,7 @@
 package com.example.movieadda.Network;
 
 import com.example.movieadda.Model.TrendingMoviesReq;
+import com.example.movieadda.Model.TrendingPerson;
 import com.example.movieadda.Model.TrendingTvShow;
 
 import retrofit2.Call;
@@ -14,5 +15,10 @@ public interface TrendingReq {
 
     @GET("trending/tv/day")
     Call<TrendingTvShow>getTrendingTvShow(@Query("api_key") String key);
+
+    @GET("trending/person/day")
+    Call<TrendingPerson> getTrendingPerson(@Query("api_key") String key);
+
+
 
 }
