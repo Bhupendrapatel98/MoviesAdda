@@ -32,7 +32,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ReviewsFragment(id);
             case 3:
-                return new SimilarFragment();
+                return new SimilarFragment(id);
                 default:
                     return null;
         }

@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieadda.Model.CrewModel;
+import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
 
         holder.cast_name.setText(list.get(position).getName());
         holder.cast_character.setText(list.get(position).getCharacter());
+        Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getProfilePath()).into(holder.cast_profile_image);
     }
 
     @Override
