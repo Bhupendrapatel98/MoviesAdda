@@ -1,6 +1,7 @@
 package com.example.movieadda.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.movieadda.Model.ButtonModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.GenerListActivity;
 
 import java.util.List;
 
@@ -34,9 +36,20 @@ public class BtnAdaapter extends RecyclerView.Adapter<BtnAdaapter.BtnViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BtnViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BtnViewHolder holder, final int position) {
 
         holder.btn.setText(list.get(position).getName());
+
+       final String id = ""+list.get(position).getId();
+
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(context, GenerListActivity.class);
+                intent.putExtra("id",id);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
