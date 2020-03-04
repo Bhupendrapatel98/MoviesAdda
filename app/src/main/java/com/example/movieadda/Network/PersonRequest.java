@@ -1,6 +1,7 @@
 package com.example.movieadda.Network;
 
 import com.example.movieadda.Model.PersonModel;
+import com.example.movieadda.Model.ProfileImagesModel;
 import com.example.movieadda.Model.ProfileInfoModel;
 
 import retrofit2.Call;
@@ -12,4 +13,7 @@ public interface PersonRequest {
 
     @GET("person/{person_id}")
     Call<ProfileInfoModel> person(@Path("person_id") String person_id, @Query("api_key")String api_key);
+
+    @GET("person/{person_id}/images")
+    Call<ProfileImagesModel> getPersonImages(@Path("person_id") String person_id, @Query("api_key")String api_key);
 }

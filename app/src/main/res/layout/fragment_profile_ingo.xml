@@ -7,6 +7,15 @@
     tools:context=".ui.Fragments.ProfileIngoFragment"
     android:background="@color/background">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
    <LinearLayout
        android:layout_marginTop="15dp"
        android:layout_width="match_parent"
@@ -124,5 +133,9 @@
 
 
     </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

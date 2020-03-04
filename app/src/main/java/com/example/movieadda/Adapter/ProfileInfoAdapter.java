@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieadda.Model.CrewModel;
+import com.example.movieadda.Model.Images;
 import com.example.movieadda.Model.ProfileInfoModel;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
@@ -22,9 +23,9 @@ import java.util.List;
 public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.ProInfoViewHolder>{
 
     Context context;
-    List<ProfileInfoModel> list;
+    List<Images> list;
 
-    public ProfileInfoAdapter(Context context, List<ProfileInfoModel> list) {
+    public ProfileInfoAdapter(Context context, List<Images> list) {
         this.context = context;
         this.list = list;
     }
@@ -40,7 +41,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProInfoViewHolder holder, int position) {
 
-        Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getProfilePath()).into(holder.proinfo_img);
+        Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getFilePath()).into(holder.proinfo_img);
 
     }
 

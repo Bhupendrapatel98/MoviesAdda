@@ -4,15 +4,18 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="200dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:layout_marginLeft="8dp">
 
         <ImageView
+            android:scaleType="centerCrop"
             android:id="@+id/proinfo_img"
             android:layout_width="150dp"
             android:layout_height="200dp"/>

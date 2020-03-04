@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.movieadda.Adapter.ProfileInfoAdapter;
+import com.example.movieadda.Model.ProfileImagesModel;
 import com.example.movieadda.Model.ProfileInfoModel;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.PersonRequest;
@@ -53,13 +54,37 @@ public class ProfileIngoFragment extends Fragment {
         biography= view.findViewById(R.id.biography);
         pro_info_recycler= view.findViewById(R.id.pro_info_recycler);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         pro_info_recycler.setLayoutManager(layoutManager);
 
         Log.i("jzhcdfdsjf", "onCreateView: "+id);
         profileInfo();
+        profileImages();
 
         return  view;
+    }
+
+    private void profileImages() {
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(PersonRequest.class)
+                .getPersonImages(id,Constants.key)
+                .enqueue(new Callback<ProfileImagesModel>() {
+                    @Override
+                    public void onResponse(Call<ProfileImagesModel> call, Response<ProfileImagesModel> response) {
+
+                        Log.i("ksdjhdsvu", "onResponse: "+response);
+                        Log.i("ksdjhdsvu", "onResponse: "+response.body());
+
+                        ProfileInfoAdapter profileInfoAdapter = new ProfileInfoAdapter(getContext(),response.body().getProfiles());
+                        pro_info_recycler.setAdapter(profileInfoAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ProfileImagesModel> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void profileInfo() {
