@@ -9,6 +9,10 @@
     android:layout_marginLeft="10dp"
     android:id="@+id/main">
 
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="150dp">
+
     <androidx.cardview.widget.CardView
 
         android:layout_width="100dp"
@@ -24,7 +28,38 @@
             android:src="@mipmap/ic_launcher"/>
 
     </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="35dp"
+          android:layout_height="20dp"
+          android:layout_alignParentRight="true"
+          android:layout_marginTop="7dp"
+          android:layout_marginRight="7dp"
+          app:cardBackgroundColor="#A9000000"
+          app:cardCornerRadius="10dp"
+
+          >
+
+          <TextView
+              android:paddingLeft="7dp"
+              android:paddingRight="7dp"
+              android:paddingTop="2dp"
+              android:paddingBottom="2dp"
+              android:id="@+id/vote"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="6.8"
+              android:textStyle="bold"
+              android:textColor="@color/white"
+              android:textSize="12dp"
+              android:gravity="center"
+              />
+
+      </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
     <TextView
+        android:layout_marginTop="10dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:id="@+id/trending_m_name"

@@ -41,7 +41,13 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
     public void onBindViewHolder(@NonNull SimilarViewHolder holder, int position) {
 
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getPosterPath()).into(holder.backdrop_path);
-        holder.title.setText(list.get(position).getTitle());
+
+        if (list.get(position).getTitle()==null) {
+            holder.title.setText(list.get(position).getName());
+        }
+        else {
+            holder.title.setText(list.get(position).getTitle());
+        }
         holder.vote_average.setText(""+list.get(position).getVoteAverage());
     }
 
@@ -64,4 +70,10 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
         }
     }
+
+   public void addAllResilu(List<Result> list){
+
+        this.list.addAll(list);
+        notifyItemRangeInserted(this.list.size()-list.size(),this.list.size());
+   }
 }

@@ -19,6 +19,7 @@ import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
 import com.example.movieadda.ui.AllDetailActivity;
+import com.example.movieadda.utils.Type;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -45,8 +46,16 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
     public void onBindViewHolder(@NonNull TrendingMoviewViewHolder holder, final int position) {
 
         Picasso.get().load(Constants.Image_URL+list.get(position).getPosterPath()).into(holder.trending_m_img);
-        holder.trending_m_name.setText(list.get(position).getTitle());
+        if (list.get(position).getTitle()==null) {
+            holder.trending_m_name.setText(list.get(position).getName());
+            Log.i("msdhbsdjhsd", "onBindViewHolder: "+list.get(position).getName());
+        }
+        else
+        {
+            holder.trending_m_name.setText(list.get(position).getTitle());
+        }
         Log.i("znzdhcvsbjdc", "onBindViewHolder: "+list.get(position).getPosterPath());
+        holder.vote.setText(""+list.get(position).getVoteAverage());
 
         Log.i("jzhsbjzdhdfufj", "onBindViewHolder: "+list.get(position).getId());
          final String key = String.valueOf(list.get(position).getId());
@@ -70,7 +79,7 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
     public class TrendingMoviewViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView trending_m_img;
-        private TextView trending_m_name;
+        private TextView trending_m_name,vote;
         private LinearLayout main;
 
         public TrendingMoviewViewHolder(@NonNull View itemView) {
@@ -79,6 +88,7 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
             trending_m_img = itemView.findViewById(R.id.trending_m_img);
             trending_m_name = itemView.findViewById(R.id.trending_m_name);
             main = itemView.findViewById(R.id.main);
+            vote = itemView.findViewById(R.id.vote);
         }
     }
 

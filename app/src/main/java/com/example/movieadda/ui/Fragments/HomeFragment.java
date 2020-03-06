@@ -1,6 +1,7 @@
 package com.example.movieadda.ui.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
 import com.example.movieadda.Adapter.TrendingPersonAdapter;
-import com.example.movieadda.Model.PersonModel;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrendingMoviesReq;
@@ -24,23 +25,28 @@ import com.example.movieadda.Model.TrendingTvShow;
 import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
-import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.MoreTrendingMoviesActivity;
+import com.example.movieadda.ui.MoreTrendingPersonActivity;
+import com.example.movieadda.utils.Type;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ss.com.bannerslider.Slider;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
 
-    private TextView trending_more;
+    private TextView trending_per_more,trending_mov_more,trending_tvs_more,upcoming_mov_more,popular_mov_more,top_rat_more;
     private RecyclerView trending_recycler, trending_tvs_recycler, upcoming_mov_recycler, popular_mov_recycler,
             top_rat_recycler,trending_person_recycler;
+    private ImageView search;
+    private Slider banner_slider;
 
 
     public HomeFragment() {
@@ -54,7 +60,15 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        trending_more = view.findViewById(R.id.trending_more);
+        trending_per_more = view.findViewById(R.id.trending_per_more);
+        trending_mov_more = view.findViewById(R.id.trending_mov_more);
+        trending_tvs_more = view.findViewById(R.id.trending_tvs_more);
+        upcoming_mov_more = view.findViewById(R.id.upcoming_mov_more);
+        popular_mov_more = view.findViewById(R.id.popular_mov_more);
+        top_rat_more = view.findViewById(R.id.top_rat_more);
+        search = view.findViewById(R.id.search);
+        banner_slider = view.findViewById(R.id.banner_slider);
+
         trending_recycler = view.findViewById(R.id.trending_recycler);
         trending_tvs_recycler = view.findViewById(R.id.trending_tvs_recycler);
         upcoming_mov_recycler = view.findViewById(R.id.upcoming_mov_recycler);
@@ -79,6 +93,57 @@ public class HomeFragment extends Fragment {
 
         LinearLayoutManager trending_person_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         trending_person_recycler.setLayoutManager(trending_person_layoutManager);
+
+
+        trending_per_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MoreTrendingPersonActivity.class));
+            }
+        });
+
+        trending_mov_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(getContext(),MoreTrendingMoviesActivity.class);
+               intent.putExtra("movie_key",Type.MovieType.TRENDING_MOVIE);
+               startActivity(intent);
+            }
+        });
+
+        trending_tvs_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key",Type.MovieType.TRENDING_TVSHOW);
+                startActivity(intent);
+            }
+        });
+        upcoming_mov_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key",Type.MovieType.UPCOMING_MOVIES);
+                startActivity(intent);
+            }
+        });
+        popular_mov_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key",Type.MovieType.POPULAR_MOVIES);
+                startActivity(intent);
+            }
+        });
+        top_rat_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key",Type.MovieType.TOP_MOVIES);
+                startActivity(intent);
+            }
+        });
+
 
         trendingMovies();
         trendingTvShow();

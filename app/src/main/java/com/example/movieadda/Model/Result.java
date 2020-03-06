@@ -184,6 +184,8 @@ public class Result {
         this.profilePath = profilePath;
     }
 
+
+
 }
 
 

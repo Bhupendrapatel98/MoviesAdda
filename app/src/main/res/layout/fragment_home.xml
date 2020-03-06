@@ -3,9 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Fragments.HomeFragment"
     android:background="@color/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginBottom="13dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primery_transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="MovieAdda"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+
+            <ImageView
+                android:id="@+id/search"
+                android:layout_weight="0.2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/search"/>
+
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,9 +46,28 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
+
+            <ss.com.bannerslider.Slider
+                android:id="@+id/banner_slider"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@drawable/bhup"
+                />
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -34,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:text="Person"
                     android:textSize="14sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/light_gray"
                     android:layout_marginLeft="8sp"/>
 
                 <TextView
@@ -43,6 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="More"
+                    android:layout_marginRight="10dp"
                     android:textSize="16sp"
                     android:textColor="#F44336"
                     android:layout_marginLeft="8sp"
@@ -74,15 +126,16 @@
            android:layout_height="wrap_content"
            android:text="Movies"
            android:textSize="14sp"
-           android:textColor="@color/white"
+           android:textColor="@color/light_gray"
            android:layout_marginLeft="8sp"/>
 
        <TextView
-           android:id="@+id/trending_more"
+           android:id="@+id/trending_mov_more"
            android:layout_weight="1"
            android:layout_width="0dp"
            android:layout_height="wrap_content"
            android:text="More"
+           android:layout_marginRight="10dp"
            android:textSize="16sp"
            android:textColor="#F44336"
            android:layout_marginLeft="8sp"
@@ -115,7 +168,7 @@
             android:layout_height="wrap_content"
             android:text="Tv Show"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/light_gray"
             android:layout_marginLeft="8sp"/>
 
         <TextView
@@ -124,6 +177,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="More"
+            android:layout_marginRight="10dp"
             android:textSize="16sp"
             android:textColor="#F44336"
             android:layout_marginLeft="8sp"
@@ -156,7 +210,7 @@
             android:layout_height="wrap_content"
             android:text="Movies"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/light_gray"
             android:layout_marginLeft="8sp"/>
 
         <TextView
@@ -165,6 +219,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="More"
+            android:layout_marginRight="10dp"
             android:textSize="16sp"
             android:textColor="#F44336"
             android:layout_marginLeft="8sp"
@@ -197,7 +252,7 @@
             android:layout_height="wrap_content"
             android:text="Movies"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/light_gray"
             android:layout_marginLeft="8sp"/>
 
         <TextView
@@ -207,6 +262,7 @@
             android:layout_height="wrap_content"
             android:text="More"
             android:textSize="16sp"
+            android:layout_marginRight="10dp"
             android:textColor="#F44336"
             android:layout_marginLeft="8sp"
             android:gravity="right"/>
@@ -230,7 +286,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top"
+            android:text="TopRated"
             android:layout_marginLeft="10dp"
             android:textColor="@color/white"
             android:textSize="22sp" />
@@ -238,9 +294,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rated"
+            android:text="Movies"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/light_gray"
             android:layout_marginLeft="8sp"/>
 
         <TextView
@@ -249,6 +305,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="More"
+            android:layout_marginRight="10dp"
             android:textSize="16sp"
             android:textColor="#F44336"
             android:layout_marginLeft="8sp"

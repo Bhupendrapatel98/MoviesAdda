@@ -4,8 +4,7 @@ public class Type {
     public static enum SimilarType{
         GENER,SIMILAR
     }
-
-    public static enum ProMovieType{
-
+    public static enum MovieType{
+        TRENDING_MOVIE,TRENDING_TVSHOW,UPCOMING_MOVIES,POPULAR_MOVIES,TOP_MOVIES
     }
 }

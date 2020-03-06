@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import com.example.movieadda.R;
 import com.example.movieadda.ui.Fragments.HomeFragment;
 import com.example.movieadda.ui.Fragments.MenuFragment;
+import com.example.movieadda.ui.Fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.Search :
+                        replace(new SearchFragment());
+                        break;
 
 
                     case R.id.MyLists :

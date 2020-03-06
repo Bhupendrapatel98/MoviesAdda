@@ -1,6 +1,7 @@
 package com.example.movieadda.ui.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.movieadda.R;
+import com.example.movieadda.ui.AppInfoActivity;
+import com.example.movieadda.ui.ProfileActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +35,13 @@ LinearLayout appinfo,share,rate,bookmark;
         rate = view.findViewById(R.id.rate);
         share = view.findViewById(R.id.share);
         appinfo = view.findViewById(R.id.appinfo);
+
+        appinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), AppInfoActivity.class));
+            }
+        });
 
         return view;
     }
