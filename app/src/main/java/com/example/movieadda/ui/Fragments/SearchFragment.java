@@ -16,6 +16,7 @@ import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.Network.SearchRequest;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.ui.SearchActivity;
 
 /**
@@ -41,6 +42,14 @@ public class SearchFragment extends Fragment {
         s_tvShow = view.findViewById(R.id.s_tvShow);
         s_persons = view.findViewById(R.id.s_persons);
         fsearch = view.findViewById(R.id.fsearch);
+
+        s_movies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MoreTrendingMoviesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         fsearch.setOnClickListener(new View.OnClickListener() {
             @Override
