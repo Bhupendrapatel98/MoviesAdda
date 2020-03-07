@@ -30,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         Log.i("sdjnk", "onCreate: "+id);
+        String nam= getIntent().getStringExtra("name");
+        String photo= getIntent().getStringExtra("photo");
 
         profile_viewpager.setAdapter(new ProfileViewPager(getSupportFragmentManager(),id));
         profile_tablayout.setupWithViewPager(profile_viewpager);

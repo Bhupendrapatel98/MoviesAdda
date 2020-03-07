@@ -55,6 +55,8 @@ public class TrendingPersonAdapter extends RecyclerView.Adapter<TrendingPersonAd
                 Intent intent = new Intent(context, ProfileActivity.class);
                 intent.putExtra("id",list.get(position).getId()+"");
                 Log.i("cdnnskd", "onClick: "+list.get(position).getId());
+                intent.putExtra("name",list.get(position).getName()+"");
+                intent.putExtra("photo",list.get(position).getProfilePath()+"");
                 context.startActivity(intent);
             }
         });

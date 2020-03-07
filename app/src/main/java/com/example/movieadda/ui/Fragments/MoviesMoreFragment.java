@@ -47,7 +47,6 @@ public class MoviesMoreFragment extends Fragment {
     LinearLayoutManager layoutManager;
 
     public MoviesMoreFragment(Type.MovieType type) {
-        // Required empty public constructor
         this.type=type;
     }
 
