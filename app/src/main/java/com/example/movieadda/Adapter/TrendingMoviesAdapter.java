@@ -28,10 +28,12 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
 
     Context context;
     List<Result> list;
+    Type.MovieType type;
 
-    public TrendingMoviesAdapter(Context context, List<Result> list) {
+    public TrendingMoviesAdapter(Context context, List<Result> list, Type.MovieType type) {
         this.context = context;
         this.list = list;
+        this.type=type;
     }
 
     @NonNull
@@ -65,6 +67,7 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
             public void onClick(View view) {
                 Intent intent = new Intent(context, AllDetailActivity.class);
                 intent.putExtra("key_id",key);
+                intent.putExtra("type",type);
                 context.startActivity(intent);
             }
         });

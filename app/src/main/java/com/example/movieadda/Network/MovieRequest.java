@@ -19,11 +19,20 @@ public interface MovieRequest {
     @GET("movie/upcoming")
     Call<UpcomingMovie> getUpcomingMovie(@Query("api_key")String key);
 
+    @GET("movie/upcoming")
+    Call<UpcomingMovie> getUpcomingMovieMore(@Query("page")String page,@Query("api_key")String key);
+
     @GET("movie/popular")
     Call<PopularMovie>getPopularMovie(@Query("api_key")String key);
 
+    @GET("movie/popular")
+    Call<PopularMovie>getPopularMovieMore(@Query("page")String page,@Query("api_key")String key);
+
     @GET("movie/top_rated")
     Call<TopRAted>getTopRatedMovie(@Query("api_key")String key);
+
+    @GET("movie/top_rated")
+    Call<TopRAted>getTopRatedMovieMore(@Query("page")String page,@Query("api_key")String key);
 
     @GET("movie/{id}")
     Call<InfoModel>allDetail(@Path("id")String id,@Query("api_key")String key);

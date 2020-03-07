@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.movieadda.Adapter.MainSliderAdapter;
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
 import com.example.movieadda.Adapter.TrendingPersonAdapter;
 import com.example.movieadda.Model.PopularMovie;
@@ -28,14 +29,17 @@ import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.AllDetailActivity;
 import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.ui.MoreTrendingPersonActivity;
+import com.example.movieadda.utils.PicassoImageLoadingService;
 import com.example.movieadda.utils.Type;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ss.com.bannerslider.Slider;
+import ss.com.bannerslider.event.OnSlideClickListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,11 +98,15 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager trending_person_layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         trending_person_recycler.setLayoutManager(trending_person_layoutManager);
 
+        //slider
+        Slider.init(new PicassoImageLoadingService(getContext()));
 
         trending_per_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MoreTrendingPersonActivity.class));
+                Intent intent = new Intent(getContext(),MoreTrendingPersonActivity.class);
+                intent.putExtra("movie_key",Type.MovieType.TRENDING_PERSON);
+                startActivity(intent);
             }
         });
 
@@ -190,7 +198,7 @@ public class HomeFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TOP_MOVIES);
                         top_rat_recycler.setAdapter(adapter);
                     }
 
@@ -212,7 +220,7 @@ public class HomeFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.POPULAR_MOVIES);
                         popular_mov_recycler.setAdapter(adapter);
                     }
 
@@ -230,12 +238,24 @@ public class HomeFragment extends Fragment {
                 .getUpcomingMovie(Constants.key)
                 .enqueue(new Callback<UpcomingMovie>() {
                     @Override
-                    public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
+                    public void onResponse(Call<UpcomingMovie> call, final Response<UpcomingMovie> response) {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
-                        upcoming_mov_recycler.setAdapter(adapter);
+                        upcoming_mov_recycler.setAdapter(new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.UPCOMING_MOVIES));
+
+                        banner_slider.setAdapter(new MainSliderAdapter(response.body().getResults()));
+
+                        banner_slider.setOnSlideClickListener(new OnSlideClickListener() {
+                            @Override
+                            public void onSlideClick(int position) {
+
+                                Intent intent=new Intent(getContext(), AllDetailActivity.class);
+                                intent.putExtra("id",response.body().getResults().get(position).getId()+"");
+                                intent.putExtra("type",Type.MovieType.UPCOMING_MOVIES);
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @Override
@@ -256,7 +276,7 @@ public class HomeFragment extends Fragment {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response);
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TRENDING_TVSHOW);
                         trending_tvs_recycler.setAdapter(adapter);
                     }
 
@@ -280,7 +300,7 @@ public class HomeFragment extends Fragment {
                         Log.i("jsdhvjsd", "onResponse: " + response);
                         Log.i("jsdhvjsd", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults());
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TRENDING_MOVIE);
                         trending_recycler.setAdapter(adapter);
                     }
 

@@ -39,4 +39,15 @@ dependencies {
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
 
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
+
+    configurations.matching { it.name == '_internal_aapt2_binary' }.all { config ->
+        config.resolutionStrategy.eachDependency { details ->
+            details.useVersion("3.3.2-5309881")
+        }
+    }
+
+    //auto view pager
+    implementation 'com.github.pzienowicz:androidx-auto-scroll-view-pager:1.1.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

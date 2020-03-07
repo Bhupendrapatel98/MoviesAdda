@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.MoreTrendingPersonActivity">
 
+    <FrameLayout
+        android:id="@+id/tren_per_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 </LinearLayout>

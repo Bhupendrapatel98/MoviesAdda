@@ -95,7 +95,7 @@ public class MoviesMoreFragment extends Fragment {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(MovieRequest.class)
-                .getTopRatedMovie(Constants.key)
+                .getTopRatedMovieMore(""+page,Constants.key)
                 .enqueue(new Callback<TopRAted>() {
                     @Override
                     public void onResponse(Call<TopRAted> call, Response<TopRAted> response) {
@@ -103,8 +103,15 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                         adapter = new SimilarAdapter(getContext(), response.body().getResults());
-                        more_recycler.setAdapter(adapter);
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
                     }
 
                     @Override
@@ -118,15 +125,22 @@ public class MoviesMoreFragment extends Fragment {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(MovieRequest.class)
-                .getPopularMovie(Constants.key)
+                .getPopularMovieMore(""+page,Constants.key)
                 .enqueue(new Callback<PopularMovie>() {
                     @Override
                     public void onResponse(Call<PopularMovie> call, Response<PopularMovie> response) {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        adapter = new SimilarAdapter(getContext(), response.body().getResults());
-                        more_recycler.setAdapter(adapter);
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
                     }
 
                     @Override
@@ -140,15 +154,22 @@ public class MoviesMoreFragment extends Fragment {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(MovieRequest.class)
-                .getUpcomingMovie(Constants.key)
+                .getUpcomingMovieMore(""+page,Constants.key)
                 .enqueue(new Callback<UpcomingMovie>() {
                     @Override
                     public void onResponse(Call<UpcomingMovie> call, Response<UpcomingMovie> response) {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        adapter = new SimilarAdapter(getContext(), response.body().getResults());
-                        more_recycler.setAdapter(adapter);
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
                     }
 
                     @Override
@@ -162,15 +183,22 @@ public class MoviesMoreFragment extends Fragment {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(TrendingReq.class)
-                .getTrendingTvShow(Constants.key)
+                .getTrendingTvShowMore(""+page,Constants.key)
                 .enqueue(new Callback<TrendingTvShow>() {
                     @Override
                     public void onResponse(Call<TrendingTvShow> call, Response<TrendingTvShow> response) {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response);
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
-                         adapter = new SimilarAdapter(getContext(), response.body().getResults());
-                        more_recycler.setAdapter(adapter);
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
                     }
 
                     @Override

@@ -18,6 +18,7 @@ import com.example.movieadda.Network.SearchRequest;
 import com.example.movieadda.R;
 import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.ui.SearchActivity;
+import com.example.movieadda.utils.Type;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +48,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key", Type.MovieType.TRENDING_MOVIE);
+                startActivity(intent);
+            }
+        });
+        s_tvShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MoreTrendingMoviesActivity.class);
+                intent.putExtra("movie_key", Type.MovieType.TRENDING_TVSHOW);
                 startActivity(intent);
             }
         });

@@ -20,6 +20,9 @@ public interface TrendingReq {
     @GET("trending/tv/day")
     Call<TrendingTvShow>getTrendingTvShow(@Query("api_key") String key);
 
+    @GET("trending/tv/day")
+    Call<TrendingTvShow>getTrendingTvShowMore(@Query("page") String page,@Query("api_key") String key);
+
     @GET("trending/person/day")
     Call<TrendingPerson> getTrendingPerson(@Query("api_key") String key);
 
