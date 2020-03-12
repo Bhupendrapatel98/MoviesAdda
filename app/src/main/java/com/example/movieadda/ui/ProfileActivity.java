@@ -17,7 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     TabLayout profile_tablayout;
     ViewPager profile_viewpager;
-    String id="";
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

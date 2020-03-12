@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.movieadda.Adapter.CastAdapter;
 import com.example.movieadda.Adapter.TrendingPersonAdapter;
+import com.example.movieadda.Adapter.TrendingPersonListAdapter;
 import com.example.movieadda.Model.TrendingPerson;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.RetrofitClint;
@@ -35,7 +36,9 @@ public class PersonMoreFragment extends Fragment {
     RecyclerView more_recycler;
     MKLoader loader;
     LinearLayoutManager layoutManager;
-    CastAdapter adapter;
+    TrendingPersonListAdapter adapter;
+    int page=1;
+    boolean isLoading=false;
 
 
     public PersonMoreFragment(Type.MovieType type) {
@@ -56,11 +59,13 @@ public class PersonMoreFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         more_recycler.setLayoutManager(layoutManager);
 
-        if (type==Type.MovieType.TRENDING_PERSON){
+        Log.i("ncvvdhdhdgd", "onCreateView: "+type);
 
+        if (type==Type.MovieType.TRENDING_PERSON){
+            getPersonMore();
         }
 
-
+        addListner();
 
         return view;
     }
@@ -69,7 +74,7 @@ public class PersonMoreFragment extends Fragment {
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(TrendingReq.class)
-                .getTrendingPerson(Constants.key)
+                .getTrendingPersonList(""+page,Constants.key)
                 .enqueue(new Callback<TrendingPerson>() {
                     @Override
                     public void onResponse(Call<TrendingPerson> call, Response<TrendingPerson> response) {
@@ -77,9 +82,17 @@ public class PersonMoreFragment extends Fragment {
                         Log.i("msdjbshj", "onResponse: "+response);
                         Log.i("msdjbshj", "onResponse: "+response.body());
 
-//                        adapter = new CastAdapter(getContext(),response.body().getResults());
-//                        more_recycler.setAdapter(adapter);
-                    }
+                        if (page==1){
+
+                             adapter = new TrendingPersonListAdapter(getContext(),response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading = false;
+                        page++;
+              }
 
                     @Override
                     public void onFailure(Call<TrendingPerson> call, Throwable t) {
@@ -87,6 +100,39 @@ public class PersonMoreFragment extends Fragment {
                     }
                 });
 
+    }
+
+    public void addListner(){
+
+        more_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int total = layoutManager.getItemCount();
+                int firstVisibleItemCount = layoutManager.findFirstVisibleItemPosition();
+                int lastVisibleItemCount = layoutManager.findLastVisibleItemPosition();
+
+                //to avoid multiple calls to loadMore() method
+                //maintain a boolean value (isLoading). if loadMore() task started set to true and completes set to false
+                if (!isLoading) {
+                    if (total > 0)
+                        if ((total - 1) == lastVisibleItemCount) {
+                            isLoading = true;
+
+                            getPersonMore();
+
+                        }
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+
+        });
     }
 
 }

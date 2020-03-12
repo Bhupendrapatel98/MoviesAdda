@@ -1,6 +1,8 @@
 package com.example.movieadda.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -9,7 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.movieadda.Adapter.SearchViewPager;
+import com.example.movieadda.Adapter.ViewPagerAdapter;
 import com.example.movieadda.R;
+import com.example.movieadda.utils.Type;
 import com.google.android.material.tabs.TabLayout;
 
 public class SearchActivity extends AppCompatActivity {
@@ -29,14 +33,15 @@ public class SearchActivity extends AppCompatActivity {
         search_icon = findViewById(R.id.search_icon);
         s_edit = findViewById(R.id.s_edit);
 
+        s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
+        s_tabLayout.setupWithViewPager(s_viewpage);
+
         search_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-            String stext = s_edit.getText().toString();
-             s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),stext));
+             s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
                 s_viewpage.setOffscreenPageLimit(0);
-                s_tabLayout.setupWithViewPager(s_viewpage);
             }
         });
     }

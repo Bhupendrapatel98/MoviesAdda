@@ -1,9 +1,14 @@
 package com.example.movieadda.Model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+@Entity
 
     public class InfoModel {
 
@@ -25,8 +30,10 @@ import java.util.List;
         @SerializedName("homepage")
         @Expose
         private String homepage;
+
         @SerializedName("id")
         @Expose
+        @PrimaryKey
         private Long id;
         @SerializedName("imdb_id")
         @Expose

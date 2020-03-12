@@ -7,6 +7,9 @@ import java.util.List;
 
 public class Result {
 
+    @SerializedName("known_for_department")
+    @Expose
+    private String known_for_department;
     @SerializedName("name")
     @Expose
     private String name;
@@ -184,8 +187,13 @@ public class Result {
         this.profilePath = profilePath;
     }
 
+    public String getKnown_for_department() {
+        return known_for_department;
+    }
 
-
+    public void setKnown_for_department(String known_for_department) {
+        this.known_for_department = known_for_department;
+    }
 }
 
 

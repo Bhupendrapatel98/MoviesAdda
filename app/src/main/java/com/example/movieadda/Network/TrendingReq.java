@@ -26,6 +26,9 @@ public interface TrendingReq {
     @GET("trending/person/day")
     Call<TrendingPerson> getTrendingPerson(@Query("api_key") String key);
 
+    @GET("trending/person/day")
+    Call<TrendingPerson> getTrendingPersonList(@Query("page") String page,@Query("api_key") String key);
+
 
 
 }

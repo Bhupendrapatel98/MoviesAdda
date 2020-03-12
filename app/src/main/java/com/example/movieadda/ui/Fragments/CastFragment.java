@@ -19,6 +19,7 @@ import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
+import com.example.movieadda.utils.Type;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,9 +32,13 @@ public class CastFragment extends Fragment {
 
     private RecyclerView cast_recycler;
     String id;
+    Type.MovieType typeM;
+    Type.Credit type;
 
-    public CastFragment(String id) {
+    public CastFragment(String id,Type.MovieType typeM,Type.Credit type) {
         this.id=id;
+        this.typeM=typeM;
+        this.type=type;
     }
 
 
@@ -48,8 +53,17 @@ public class CastFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         cast_recycler.setLayoutManager(layoutManager);
 
+        Log.i("mcvbfcjvcfvkf", "onCreateView: "+type);
+        Log.i("mcvbfcjvcfvkf", "onCreateView: "+typeM);
 
-        crew();
+        if (typeM == Type.MovieType.UPCOMING_MOVIES){
+
+            crew();
+        }
+        else {
+            crew();
+        }
+
 
         return view;
     }

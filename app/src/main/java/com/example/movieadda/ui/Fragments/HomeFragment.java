@@ -251,7 +251,8 @@ public class HomeFragment extends Fragment {
                             public void onSlideClick(int position) {
 
                                 Intent intent=new Intent(getContext(), AllDetailActivity.class);
-                                intent.putExtra("id",response.body().getResults().get(position).getId()+"");
+                                intent.putExtra("key_id",response.body().getResults().get(position).getId()+"");
+                                Log.i("mjdbnksdjkd", "onSlideClick: "+response.body().getResults().get(position).getId());
                                 intent.putExtra("type",Type.MovieType.UPCOMING_MOVIES);
                                 startActivity(intent);
                             }

@@ -24,6 +24,7 @@ import com.example.movieadda.Adapter.CrewAdapter;
 import com.example.movieadda.Adapter.TrailersAdapter;
 import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.InfoModel;
+
 import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrailersModel;
 import com.example.movieadda.Network.Constants;
@@ -47,7 +48,7 @@ public class InfoFragment extends Fragment {
     String id;
     RecyclerView btn_recycler,crew_recycler,trailer_recycler;
     TextView production_com_name,top_title;
-    ImageView backdrop_path,poster_path;
+    ImageView backdrop_path,poster_path,bookmark;
 
 
     public InfoFragment(String id) {
@@ -77,6 +78,8 @@ public class InfoFragment extends Fragment {
         poster_path = view.findViewById(R.id.poster_path);
         backdrop_path = view.findViewById(R.id.backdrop_path);
         top_title = view.findViewById(R.id.top_title);
+        bookmark = view.findViewById(R.id.bookmark);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
         btn_recycler.setLayoutManager(layoutManager);
@@ -149,7 +152,9 @@ public class InfoFragment extends Fragment {
                 .allDetail(id,Constants.key)
                 .enqueue(new Callback<InfoModel>() {
                     @Override
-                    public void onResponse(Call<InfoModel> call, Response<InfoModel> response) {
+                    public void onResponse(Call<InfoModel> call, final Response<InfoModel> response) {
+
+
 
                         Log.i("zmcbsjdchj", "onResponse: "+response);
                         Log.i("zmcbsjdchj", "onResponse: "+response.body());

@@ -55,6 +55,7 @@ public class SimilarFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         similar_recycler.setLayoutManager(layoutManager);
 
+
         if(type == Type.SimilarType.GENER)
             getGenerList();
         else if(type == Type.SimilarType.SIMILAR)

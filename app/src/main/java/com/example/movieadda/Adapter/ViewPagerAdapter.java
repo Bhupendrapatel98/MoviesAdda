@@ -15,10 +15,12 @@ import com.example.movieadda.utils.Type;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     String id;
+    Type.MovieType type;
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, String id) {
+    public ViewPagerAdapter(@NonNull FragmentManager fm, String id,Type.MovieType type) {
         super(fm);
         this.id = id;
+        this.type=type;
     }
 
     @NonNull
@@ -29,7 +31,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case  0 :
                 return new InfoFragment(id);
             case 1:
-                return new CastFragment(id);
+                return new CastFragment(id,type,Type.Credit.CAST);
             case 2:
                 return new ReviewsFragment(id);
             case 3:

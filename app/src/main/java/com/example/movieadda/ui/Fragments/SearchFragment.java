@@ -17,6 +17,7 @@ import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.Network.SearchRequest;
 import com.example.movieadda.R;
 import com.example.movieadda.ui.MoreTrendingMoviesActivity;
+import com.example.movieadda.ui.MoreTrendingPersonActivity;
 import com.example.movieadda.ui.SearchActivity;
 import com.example.movieadda.utils.Type;
 
@@ -57,6 +58,14 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MoreTrendingMoviesActivity.class);
                 intent.putExtra("movie_key", Type.MovieType.TRENDING_TVSHOW);
+                startActivity(intent);
+            }
+        });
+        s_persons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MoreTrendingPersonActivity.class);
+                intent.putExtra("movie_key", Type.MovieType.TRENDING_PERSON);
                 startActivity(intent);
             }
         });

@@ -32,7 +32,7 @@ public class ProfileViewPager extends FragmentPagerAdapter {
             case  0 :
                 return new ProfileIngoFragment(id);
             case 1:
-                return new ProfileMoviesFragment(id);
+               // return new SimilarFragment(id,Type.SimilarType.SIMILAR);
             case 2:
                 return new ProfileTvShowsFragment();
             default:

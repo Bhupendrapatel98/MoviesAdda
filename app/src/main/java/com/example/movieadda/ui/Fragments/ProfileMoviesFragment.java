@@ -18,6 +18,7 @@ import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
+import com.example.movieadda.utils.Type;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +29,7 @@ import retrofit2.Response;
  */
 public class ProfileMoviesFragment extends Fragment {
 
-    String id;
+    String id="";
     RecyclerView profile_moview_recycler;
 
     public ProfileMoviesFragment(String id) {
@@ -49,7 +50,8 @@ public class ProfileMoviesFragment extends Fragment {
         profile_moview_recycler.setLayoutManager(layoutManager);
 
         Log.i("dkfjvhdfkdf", "onCreateView: "+id);
-        getPersonMovies();
+
+            getPersonMovies();
 
         return view;
     }

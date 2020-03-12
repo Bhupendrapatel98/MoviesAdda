@@ -10,4 +10,11 @@ public class Type {
     public static enum MoreType{
         SEARCH_MOVIE,SEARCH_TVSHOW,SEARCH_PEOPLE
     }
+    public static enum Credit{
+        CAST,CREW
+    }
+    public static enum MovTv{
+        MOVIE,TVSHOW
+    }
+
 }

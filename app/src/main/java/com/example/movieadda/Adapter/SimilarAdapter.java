@@ -72,7 +72,6 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
     }
 
    public void addAllResilu(List<Result> list){
-
         this.list.addAll(list);
         notifyItemRangeInserted(this.list.size()-list.size(),this.list.size());
    }
