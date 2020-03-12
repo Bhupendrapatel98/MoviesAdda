@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import com.example.movieadda.Adapter.SearchViewPager;
 import com.example.movieadda.Adapter.ViewPagerAdapter;
 import com.example.movieadda.R;
@@ -41,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View view) {
 
              s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
-                s_viewpage.setOffscreenPageLimit(0);
+             s_viewpage.setOffscreenPageLimit(0);
             }
         });
     }

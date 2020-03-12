@@ -2,6 +2,7 @@ package com.example.movieadda.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,14 @@ public class TrendingPersonAdapter extends RecyclerView.Adapter<TrendingPersonAd
     public void onBindViewHolder(@NonNull PersonViewHolder holder, final int position) {
 
         holder.person_name.setText(list.get(position).getName());
+        if (list.get(position).getProfilePath()==null){
+
+            Picasso.get().load(R.drawable.profile).into(holder.person_profile);
+        }
+        else {
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getProfilePath()).into(holder.person_profile);
+
+        }
 
         holder.trending_person_main.setOnClickListener(new View.OnClickListener() {
             @Override

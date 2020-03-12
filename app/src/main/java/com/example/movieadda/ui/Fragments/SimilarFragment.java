@@ -35,12 +35,14 @@ public class SimilarFragment extends Fragment {
 
     String id;
     Type.SimilarType type;
+    Type.MovTv movie;
     RecyclerView similar_recycler;
 
-    public SimilarFragment(String id, Type.SimilarType type) {
+    public SimilarFragment(String id, Type.SimilarType type,Type.MovTv movie) {
         // Required empty public constructor
         this.id=id;
         this.type = type;
+        this.movie=movie;
     }
 
 
@@ -57,9 +59,17 @@ public class SimilarFragment extends Fragment {
 
 
         if(type == Type.SimilarType.GENER)
+        {
             getGenerList();
+        }
         else if(type == Type.SimilarType.SIMILAR)
+        {
             getSimilarMovies();
+        }
+        else if (movie==Type.MovTv.MOVIE)
+        {
+            getSimilarMovies();
+        }
 
 
         return view;

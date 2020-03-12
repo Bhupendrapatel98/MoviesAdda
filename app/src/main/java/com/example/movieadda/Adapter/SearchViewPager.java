@@ -28,11 +28,11 @@ public class SearchViewPager extends FragmentPagerAdapter {
         switch (position){
 
             case  0 :
-                return new SimilarFragment(s,Type.SimilarType.SIMILAR);
+                return new SimilarFragment(s,Type.SimilarType.SIMILAR,Type.MovTv.MOVIE);
             case 1:
-                return new SimilarFragment(s,Type.SimilarType.GENER);
-           // case 2:
-               // return new PersonMoreFragment();
+                return new SimilarFragment(s,Type.SimilarType.GENER,Type.MovTv.MOVIE);
+            case 2:
+                //return new PersonMoreFragment();
             default:
                 return null;
         }
@@ -40,7 +40,7 @@ public class SearchViewPager extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     public CharSequence getPageTitle(int position){
@@ -50,7 +50,7 @@ public class SearchViewPager extends FragmentPagerAdapter {
                 return "Movie";
             case 1:
                 return "TV Show";
-//            case 2:
+            case 2:
 //                return "People";
             default:
                 return null;

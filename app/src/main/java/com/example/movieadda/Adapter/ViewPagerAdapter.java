@@ -35,7 +35,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ReviewsFragment(id);
             case 3:
-                return new SimilarFragment(id, Type.SimilarType.SIMILAR);
+                return new SimilarFragment(id, Type.SimilarType.SIMILAR,Type.MovTv.MOVIE);
                 default:
                     return null;
         }

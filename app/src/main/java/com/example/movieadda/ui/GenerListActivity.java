@@ -27,7 +27,7 @@ public class GenerListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
-        replace(new SimilarFragment(id, Type.SimilarType.GENER));
+        replace(new SimilarFragment(id, Type.SimilarType.GENER,Type.MovTv.MOVIE));
     }
 
     void replace(Fragment fragment){

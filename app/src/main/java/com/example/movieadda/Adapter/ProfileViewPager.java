@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
 import com.example.movieadda.ui.Fragments.CastFragment;
 import com.example.movieadda.ui.Fragments.InfoFragment;
 import com.example.movieadda.ui.Fragments.ProfileIngoFragment;
@@ -32,7 +31,7 @@ public class ProfileViewPager extends FragmentPagerAdapter {
             case  0 :
                 return new ProfileIngoFragment(id);
             case 1:
-               // return new SimilarFragment(id,Type.SimilarType.SIMILAR);
+                return new SimilarFragment(id,Type.SimilarType.SIMILAR,Type.MovTv.MOVIE);
             case 2:
                 return new ProfileTvShowsFragment();
             default:
