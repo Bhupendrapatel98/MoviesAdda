@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -31,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         replace(new HomeFragment());
 
-        main_nav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        main_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()){
 
                     case R.id.home :
+                        Log.i("ckjbnkbg", "onNavigationItemReselected: "+item.getItemId());
                         replace(new HomeFragment());
                         break;
 
@@ -55,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         replace(new MenuFragment());
                         break;
                 }
+                return false;
             }
         });
-
-
     }
 
 
