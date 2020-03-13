@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 public interface SearchRequest {
 
     @GET("search/movie")
-    Call<SearchModel> getSearchmovie(@Query("api_key")String api_key,@Query("query")String query);
+    Call<SearchModel> getSearchmovie(@Query("page") String page,@Query("query")String query,@Query("api_key")String api_key);
 
     @GET("search/tv")
     Call<SearchModel> getsearchTv(@Query("page") String page, @Query("query")String query, @Query("api_key")String key);

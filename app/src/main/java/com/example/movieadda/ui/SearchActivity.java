@@ -31,8 +31,8 @@ public class SearchActivity extends AppCompatActivity {
         search_icon = findViewById(R.id.search_icon);
         s_edit = findViewById(R.id.s_edit);
 
-        s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
-        s_tabLayout.setupWithViewPager(s_viewpage);
+//        s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager()," "));
+//        s_tabLayout.setupWithViewPager(s_viewpage);
 
         search_icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +40,7 @@ public class SearchActivity extends AppCompatActivity {
 
              s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
              s_viewpage.setOffscreenPageLimit(0);
+             s_tabLayout.setupWithViewPager(s_viewpage);
             }
         });
     }

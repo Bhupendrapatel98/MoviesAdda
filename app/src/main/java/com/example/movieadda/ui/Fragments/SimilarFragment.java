@@ -84,7 +84,7 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GenerListModel> call, Response<GenerListModel> response) {
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults());
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE);
                         similar_recycler.setAdapter(similarAdapter);
                     }
 
@@ -104,7 +104,9 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<SimilarModel> call, Response<SimilarModel> response) {
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults());
+                        Log.i("bnkbffjjdfdj", "onResponse: "+response.body().getResults());
+
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE);
                         similar_recycler.setAdapter(similarAdapter);
 
                     }

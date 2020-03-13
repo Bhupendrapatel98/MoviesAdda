@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.movieadda.Adapter.SimilarAdapter;
 import com.example.movieadda.Adapter.TrendingMoviesAdapter;
 import com.example.movieadda.Model.PopularMovie;
+import com.example.movieadda.Model.SearchModel;
 import com.example.movieadda.Model.TopRAted;
 import com.example.movieadda.Model.TrendingMoviesReq;
 import com.example.movieadda.Model.TrendingTvShow;
@@ -22,6 +23,7 @@ import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
+import com.example.movieadda.Network.SearchRequest;
 import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
 import com.example.movieadda.utils.Type;
@@ -46,8 +48,18 @@ public class MoviesMoreFragment extends Fragment {
     boolean isLoading=false;
     LinearLayoutManager layoutManager;
 
+
+    private String query;
+
     public MoviesMoreFragment(Type.MovieType type) {
         this.type=type;
+    }
+
+    public MoviesMoreFragment(String query, Type.MovieType type) {
+
+        this.query=query;
+        this.type=type;
+
     }
 
 
@@ -83,6 +95,9 @@ public class MoviesMoreFragment extends Fragment {
             case TOP_MOVIES:
                 topRatedMovie();
                 break;
+            case SEARCH_MOVIE:
+                searchMovie();
+                break;
         }
 
         addListner();
@@ -103,7 +118,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -132,7 +147,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -161,7 +176,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -190,7 +205,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -219,7 +234,7 @@ public class MoviesMoreFragment extends Fragment {
                     public void onResponse(Call<TrendingMoviesReq> call, Response<TrendingMoviesReq> response) {
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults());
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -235,6 +250,36 @@ public class MoviesMoreFragment extends Fragment {
                     }
                 });
 
+    }
+
+    public void searchMovie(){
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(SearchRequest.class)
+                .getSearchmovie(page + "",query,Constants.key)
+                .enqueue(new Callback<SearchModel>() {
+                    @Override
+                    public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
+
+                        Log.i("ffjfgfgfgfrgkg", "onResponse: "+response);
+                        Log.i("bnnbnbnbnnb", "onResponse: "+response.body());
+
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchModel> call, Throwable t) {
+
+                    }
+                });
     }
 
     public void addListner(){
@@ -274,6 +319,9 @@ public class MoviesMoreFragment extends Fragment {
 
                                     case TOP_MOVIES:
                                         topRatedMovie();
+                                        break;
+                                    case SEARCH_MOVIE:
+                                        searchMovie();
                                         break;
                                 }
 

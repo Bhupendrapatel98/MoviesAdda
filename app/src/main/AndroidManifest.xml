@@ -3,6 +3,8 @@
     package="com.example.movieadda">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".utils.Application"
@@ -12,7 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.BookmarkActivity"></activity>
+        <activity android:name=".ui.MoviePosterActivity"></activity>
+        <activity android:name=".ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.BookmarkActivity" />
         <activity android:name=".ui.MoreTrendingMoviesActivity" />
         <activity android:name=".ui.MoreTrendingPersonActivity" />
         <activity android:name=".ui.SearchActivity" />
@@ -20,13 +30,15 @@
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.GenerListActivity" />
         <activity android:name=".ui.AllDetailActivity" />
-        <activity android:name=".ui.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.MainActivity"></activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <receiver
+            android:name=".utils.NetworkChangeReceiver"
+            android:label="NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
-        </activity>
+        </receiver>
     </application>
 
 </manifest>

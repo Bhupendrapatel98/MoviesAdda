@@ -11,6 +11,7 @@ import com.example.movieadda.ui.Fragments.ProfileIngoFragment;
 import com.example.movieadda.ui.Fragments.ProfileMoviesFragment;
 import com.example.movieadda.ui.Fragments.ProfileTvShowsFragment;
 import com.example.movieadda.ui.Fragments.SimilarFragment;
+import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.utils.Type;
 
 public class SearchViewPager extends FragmentPagerAdapter {
@@ -28,11 +29,11 @@ public class SearchViewPager extends FragmentPagerAdapter {
         switch (position){
 
             case  0 :
-                return new SimilarFragment(s,Type.SimilarType.SIMILAR,Type.MovTv.MOVIE);
+                return new MoviesMoreFragment(s,Type.MovieType.SEARCH_MOVIE);
             case 1:
-                return new SimilarFragment(s,Type.SimilarType.GENER,Type.MovTv.MOVIE);
-            case 2:
-                //return new PersonMoreFragment();
+                return new MoviesMoreFragment(s,Type.MovieType.SEARCH_TVSHOW);
+            //case 2:
+               // return new PersonMoreFragment(Type.MovieType.TRENDING_PERSON );
             default:
                 return null;
         }
@@ -40,7 +41,7 @@ public class SearchViewPager extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     public CharSequence getPageTitle(int position){
@@ -50,8 +51,8 @@ public class SearchViewPager extends FragmentPagerAdapter {
                 return "Movie";
             case 1:
                 return "TV Show";
-            case 2:
-//                return "People";
+            //case 2:
+                //return "People";
             default:
                 return null;
         }

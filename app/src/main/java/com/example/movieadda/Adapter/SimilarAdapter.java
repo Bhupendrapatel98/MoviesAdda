@@ -1,6 +1,7 @@
 package com.example.movieadda.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.movieadda.Model.Result;
 import com.example.movieadda.Model.ReviewModel;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
+import com.example.movieadda.utils.Type;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,10 +25,12 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
     Context context;
     List<Result> list;
+    Type.MovTv type;
 
-    public SimilarAdapter(Context context, List<Result> list) {
+    public SimilarAdapter(Context context, List<Result> list, Type.MovTv type) {
         this.context = context;
         this.list = list;
+        this.type=type;
     }
 
     @NonNull
@@ -42,12 +46,21 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getPosterPath()).into(holder.backdrop_path);
 
-        if (list.get(position).getTitle()==null) {
-            holder.title.setText(list.get(position).getName());
-        }
-        else {
+        Log.i("jgfjhgfkggf", "onBindViewHolder: "+list);
+
+        if (type==Type.MovTv.MOVIE){
             holder.title.setText(list.get(position).getTitle());
         }
+        else {
+            holder.title.setText(list.get(position).getName());
+        }
+
+//        if (list.get(position).getTitle()==null) {
+//            holder.title.setText(list.get(position).getName());
+//        }
+//        else {
+//            holder.title.setText(list.get(position).getTitle());
+//        }
         holder.vote_average.setText(""+list.get(position).getVoteAverage());
     }
 

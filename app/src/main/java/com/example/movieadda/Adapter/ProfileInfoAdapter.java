@@ -1,6 +1,7 @@
 package com.example.movieadda.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,10 @@ import com.example.movieadda.Model.Images;
 import com.example.movieadda.Model.ProfileInfoModel;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.MoviePosterActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.ProInfoViewHolder>{
@@ -42,6 +45,15 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
     public void onBindViewHolder(@NonNull ProInfoViewHolder holder, int position) {
 
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getFilePath()).into(holder.proinfo_img);
+
+        holder.proinfo_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, MoviePosterActivity.class);
+                intent.putExtra("images",(ArrayList<Images>) (list));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
