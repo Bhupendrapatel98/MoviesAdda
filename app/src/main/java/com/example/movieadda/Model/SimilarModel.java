@@ -20,7 +20,17 @@ public class SimilarModel {
         @Expose
         private Long totalResults;
 
-        public Long getPage() {
+    @Override
+    public String toString() {
+        return "SimilarModel{" +
+                "page=" + page +
+                ", results=" + results +
+                ", totalPages=" + totalPages +
+                ", totalResults=" + totalResults +
+                '}';
+    }
+
+    public Long getPage() {
             return page;
         }
 

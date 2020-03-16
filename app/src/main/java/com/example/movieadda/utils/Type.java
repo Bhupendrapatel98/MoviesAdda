@@ -2,7 +2,7 @@ package com.example.movieadda.utils;
 
 public class Type {
     public static enum SimilarType{
-        GENER,SIMILAR
+        GENER,SIMILAR,PERSON_MOVIE,PERSON_TVSHOW
     }
     public static enum MovieType{
         TRENDING_MOVIE,TRENDING_TVSHOW,UPCOMING_MOVIES,POPULAR_MOVIES,

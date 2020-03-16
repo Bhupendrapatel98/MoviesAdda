@@ -102,7 +102,12 @@ public class ProfileIngoFragment extends Fragment {
                         birthday.setText(response.body().getBirthday());
                         deathday.setText(response.body().getDeathday());
 
-                        also_known_as.setText(response.body().getAlsoKnownAs().get(0));
+                        if (also_known_as==response.body().getAlsoKnownAs()) {
+                            also_known_as.setText(response.body().getAlsoKnownAs().get(0));
+                        }
+                        else {
+
+                        }
                         biography.setText(response.body().getBiography());
 
                     }

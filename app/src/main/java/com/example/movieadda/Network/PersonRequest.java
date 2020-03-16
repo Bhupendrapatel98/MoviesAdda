@@ -2,6 +2,7 @@ package com.example.movieadda.Network;
 
 import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.PersonModel;
+import com.example.movieadda.Model.PersonMoviesModel;
 import com.example.movieadda.Model.ProfileImagesModel;
 import com.example.movieadda.Model.ProfileInfoModel;
 
@@ -20,4 +21,12 @@ public interface PersonRequest {
 
     @GET("person/{person_id}/movie_credits")
     Call<CrewModel> getPersonMovies(@Path("person_id") String person_id, @Query("api_key")String api_key);
+
+    @GET("person/{person_id}/movie_credits")
+    Call<PersonMoviesModel> getPerPersonMovies(@Path("person_id") String person_id, @Query("api_key")String api_key);
+
+    @GET("person/{person_id}/tv_credits")
+    Call<PersonMoviesModel>getPersonTvshow(@Path ("person_id")String person_id, @Query("api_key")String key);
+
+
 }

@@ -2,6 +2,7 @@ package com.example.movieadda.Network;
 
 import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.InfoModel;
+import com.example.movieadda.Model.PersonMoviesModel;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.ReviewModel;
 import com.example.movieadda.Model.SimilarModel;
@@ -48,6 +49,5 @@ public interface MovieRequest {
 
     @GET("movie/{id}/similar")
     Call<SimilarModel> getSimilar(@Path("id")String id, @Query("api_key")String key);
-
 
 }

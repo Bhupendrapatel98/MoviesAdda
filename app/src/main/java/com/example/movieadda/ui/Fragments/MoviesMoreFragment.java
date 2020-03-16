@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.movieadda.Adapter.SimilarAdapter;
-import com.example.movieadda.Adapter.TrendingMoviesAdapter;
 import com.example.movieadda.Model.PopularMovie;
 import com.example.movieadda.Model.SearchModel;
 import com.example.movieadda.Model.TopRAted;
@@ -32,8 +31,6 @@ import com.tuyenmonkey.mkloader.MKLoader;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.example.movieadda.utils.Type.MovieType.TRENDING_MOVIE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -118,7 +115,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -147,7 +144,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -176,7 +173,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -205,7 +202,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -234,7 +231,7 @@ public class MoviesMoreFragment extends Fragment {
                     public void onResponse(Call<TrendingMoviesReq> call, Response<TrendingMoviesReq> response) {
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -265,7 +262,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("bnnbnbnbnnb", "onResponse: "+response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {

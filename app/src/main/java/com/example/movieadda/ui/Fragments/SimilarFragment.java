@@ -13,16 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.movieadda.Adapter.SimilarAdapter;
+import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.GenerListModel;
-import com.example.movieadda.Model.ReviewModel;
+import com.example.movieadda.Model.PersonMoviesModel;
+import com.example.movieadda.Model.Result;
 import com.example.movieadda.Model.SimilarModel;
-import com.example.movieadda.Model.UpcomingMovie;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.DiscoverRequest;
 import com.example.movieadda.Network.MovieRequest;
+import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
 import com.example.movieadda.utils.Type;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,6 +62,10 @@ public class SimilarFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         similar_recycler.setLayoutManager(layoutManager);
 
+        Log.i("idghnhhjmhj", "onCreateView: "+id);
+        Log.i("movieggghgh", "onCreateView: "+type);
+        //Log.i("movieggghgh", "onCreateView: "+movie);
+
 
         if(type == Type.SimilarType.GENER)
         {
@@ -66,9 +75,13 @@ public class SimilarFragment extends Fragment {
         {
             getSimilarMovies();
         }
-        else if (movie==Type.MovTv.MOVIE)
+        else if(type == Type.SimilarType.PERSON_MOVIE)
         {
-            getSimilarMovies();
+            getPersonMovies();
+        }
+        else if (type==Type.SimilarType.PERSON_TVSHOW){
+
+            getPersonTvShows();
         }
 
 
@@ -84,7 +97,7 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GenerListModel> call, Response<GenerListModel> response) {
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE);
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
                     }
 
@@ -104,9 +117,14 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<SimilarModel> call, Response<SimilarModel> response) {
 
+                        Log.i("kjfgbnfkbf", "onResponse: "+id);
+                        Log.i("cjnbkjgbg", "onResponse: "+Constants.key);
                         Log.i("bnkbffjjdfdj", "onResponse: "+response.body().getResults());
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE);
+                        Log.i("kjvbnkjfbfgkb", "onResponse: "+response);
+
+
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE,Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
 
                     }
@@ -116,6 +134,79 @@ public class SimilarFragment extends Fragment {
 
                     }
                 });
+    }
+    private void getPersonMovies(){
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(PersonRequest.class)
+                .getPerPersonMovies(id,Constants.key)
+                .enqueue(new Callback<PersonMoviesModel>() {
+                    @Override
+                    public void onResponse(Call<PersonMoviesModel> call, Response<PersonMoviesModel> response) {
+
+                        if (response.body() != null) {
+                            Log.i("adsfcz", "onResponse: " + response.body());
+                            Log.i("adsfcz", "onResponse: " + response.toString());
+
+
+                            PersonMoviesModel personMovies = response.body();
+
+                            List<Result> casts = personMovies.getCast();
+                            List<Result> crews = personMovies.getCrew();
+
+                            List<Result> credit = new ArrayList<>();
+                            credit.addAll(casts);
+                            credit.addAll(crews);
+
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            similar_recycler.setAdapter(similarAdapter);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<PersonMoviesModel> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    private void getPersonTvShows(){
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(PersonRequest.class)
+                .getPersonTvshow(id,Constants.key)
+                .enqueue(new Callback<PersonMoviesModel>() {
+                    @Override
+                    public void onResponse(Call<PersonMoviesModel> call, Response<PersonMoviesModel> response) {
+
+                        if (response.body() != null) {
+                            Log.i("adsfcz", "onResponse: " + response.body());
+                            Log.i("adsfcz", "onResponse: " + response.toString());
+
+
+                            PersonMoviesModel personMovies = response.body();
+
+                            List<Result> casts = personMovies.getCast();
+                            List<Result> crews = personMovies.getCrew();
+
+                            List<Result> credit = new ArrayList<>();
+                            credit.addAll(casts);
+                            credit.addAll(crews);
+
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
+                            similar_recycler.setAdapter(similarAdapter);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<PersonMoviesModel> call, Throwable t) {
+
+                    }
+                });
+
+
     }
 
 }

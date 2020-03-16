@@ -7,6 +7,10 @@ import java.util.List;
 
 public class Result {
 
+    @SerializedName("original_name")
+    @Expose
+    private String original_name;
+
     @SerializedName("known_for_department")
     @Expose
     private String known_for_department;
@@ -193,6 +197,14 @@ public class Result {
 
     public void setKnown_for_department(String known_for_department) {
         this.known_for_department = known_for_department;
+    }
+
+    public String getOriginal_name() {
+        return original_name;
+    }
+
+    public void setOriginal_name(String original_name) {
+        this.original_name = original_name;
     }
 }
 
