@@ -31,9 +31,9 @@ public class ProfileViewPager extends FragmentPagerAdapter {
             case  0 :
                 return new ProfileIngoFragment(id);
             case 1:
-                return new SimilarFragment(id,Type.SimilarType.PERSON_MOVIE,Type.MovTv.MOVIE);
+                return new SimilarFragment(id,Type.SimilarType.PERSON_MOVIE,Type.MovieType.MOVIE);
             case 2:
-                return new SimilarFragment(id,Type.SimilarType.PERSON_TVSHOW,Type.MovTv.MOVIE);
+                return new SimilarFragment(id,Type.SimilarType.PERSON_TVSHOW,Type.MovieType.MOVIE);
             default:
                 return null;
         }

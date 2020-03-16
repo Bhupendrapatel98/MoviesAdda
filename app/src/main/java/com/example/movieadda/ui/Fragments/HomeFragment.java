@@ -32,6 +32,7 @@ import com.example.movieadda.R;
 import com.example.movieadda.ui.AllDetailActivity;
 import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.ui.MoreTrendingPersonActivity;
+import com.example.movieadda.ui.SearchActivity;
 import com.example.movieadda.utils.PicassoImageLoadingService;
 import com.example.movieadda.utils.Type;
 
@@ -79,6 +80,13 @@ public class HomeFragment extends Fragment {
         popular_mov_recycler = view.findViewById(R.id.popular_mov_recycler);
         top_rat_recycler = view.findViewById(R.id.top_rat_recycler);
         trending_person_recycler = view.findViewById(R.id.trending_person_recycler);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+            }
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         trending_recycler.setLayoutManager(layoutManager);

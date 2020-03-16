@@ -5,9 +5,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.example.movieadda.Adapter.SearchViewPager;
 import com.example.movieadda.Adapter.ViewPagerAdapter;
 import com.example.movieadda.R;
@@ -31,16 +38,19 @@ public class SearchActivity extends AppCompatActivity {
         search_icon = findViewById(R.id.search_icon);
         s_edit = findViewById(R.id.s_edit);
 
-//        s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager()," "));
-//        s_tabLayout.setupWithViewPager(s_viewpage);
+        search();
+           }
+
+    public void search(){
 
         search_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("mjcbdjjddfdkff", "onClick: "+s_edit.getText().toString());
 
-             s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
-             s_viewpage.setOffscreenPageLimit(0);
-             s_tabLayout.setupWithViewPager(s_viewpage);
+                s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
+                s_viewpage.setOffscreenPageLimit(0);
+                s_tabLayout.setupWithViewPager(s_viewpage);
             }
         });
     }

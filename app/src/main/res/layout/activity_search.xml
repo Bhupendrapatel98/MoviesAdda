@@ -30,7 +30,8 @@
                 android:maxLines="1"
                 android:textSize="22sp"
                 android:keyboardNavigationCluster="true"
-                android:textColorHint="@color/light_gray"/>
+                android:textColorHint="@color/light_gray"
+                android:imeOptions="actionSend"/>
 
             <ImageView
                 android:layout_gravity="center_vertical"

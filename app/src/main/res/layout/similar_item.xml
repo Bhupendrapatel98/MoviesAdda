@@ -9,7 +9,8 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/main">
 
         <LinearLayout
             android:layout_width="0dp"

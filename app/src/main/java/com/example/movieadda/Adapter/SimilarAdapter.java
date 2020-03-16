@@ -1,11 +1,13 @@
 package com.example.movieadda.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.movieadda.Model.Result;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.AllDetailActivity;
 import com.example.movieadda.utils.Type;
 import com.squareup.picasso.Picasso;
 
@@ -23,10 +26,10 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
     Context context;
     List<Result> list;
-    Type.MovTv type;
+    Type.MovieType type;
     Type.SimilarType similar;
 
-    public SimilarAdapter(Context context, List<Result> list, Type.MovTv type, Type.SimilarType similar) {
+    public SimilarAdapter(Context context, List<Result> list, Type.MovieType type, Type.SimilarType similar) {
         this.context = context;
         this.list = list;
         this.type=type;
@@ -50,10 +53,10 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
         Log.i("jgfjhgfkggf", "onBindViewHolder1: "+list.get(position).getTitle());
         Log.i("jgfjhgfkggf", "onBindViewHolder2: "+list.get(position).getName());
 
-        if (type==Type.MovTv.MOVIE){
+        if (type==Type.MovieType.MOVIE){
             holder.title.setText(list.get(position).getTitle());
         }
-        else if (type==Type.MovTv.TVSHOW){
+        else if (type==Type.MovieType.TVSHOW){
 
             holder.title.setText(list.get(position).getOriginal_name());
         }
@@ -68,6 +71,18 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
             holder.title.setText(list.get(position).getTitle());
         }*/
         holder.vote_average.setText(""+list.get(position).getVoteAverage());
+
+        final String key = String.valueOf(list.get(position).getId());
+
+        holder.main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AllDetailActivity.class);
+                intent.putExtra("key_id",key);
+                intent.putExtra("type",type);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -79,6 +94,7 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
         ImageView backdrop_path;
         TextView vote_average,title;
+        LinearLayout main;
 
         public SimilarViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +102,7 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
             backdrop_path = itemView.findViewById(R.id.backdrop_path);
             vote_average = itemView.findViewById(R.id.vote_average);
             title = itemView.findViewById(R.id.title);
+            main = itemView.findViewById(R.id.main);
 
         }
     }

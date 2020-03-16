@@ -118,7 +118,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -147,7 +147,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -176,7 +176,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -205,7 +205,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.TVSHOW, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -234,7 +234,7 @@ public class MoviesMoreFragment extends Fragment {
                     public void onResponse(Call<TrendingMoviesReq> call, Response<TrendingMoviesReq> response) {
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -265,7 +265,7 @@ public class MoviesMoreFragment extends Fragment {
                         Log.i("bnnbnbnbnnb", "onResponse: "+response.body());
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {
@@ -292,7 +292,7 @@ public class MoviesMoreFragment extends Fragment {
                     public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
 
                         if (page==1) {
-                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovieType.TVSHOW, Type.SimilarType.SIMILAR);
                             more_recycler.setAdapter(adapter);
                         }
                         else {

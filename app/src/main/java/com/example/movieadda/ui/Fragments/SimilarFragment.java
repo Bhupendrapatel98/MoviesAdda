@@ -40,10 +40,10 @@ public class SimilarFragment extends Fragment {
 
     String id;
     Type.SimilarType type;
-    Type.MovTv movie;
+    Type.MovieType movie;
     RecyclerView similar_recycler;
 
-    public SimilarFragment(String id, Type.SimilarType type,Type.MovTv movie) {
+    public SimilarFragment(String id, Type.SimilarType type,Type.MovieType movie) {
         // Required empty public constructor
         this.id=id;
         this.type = type;
@@ -97,7 +97,7 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GenerListModel> call, Response<GenerListModel> response) {
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
                     }
 
@@ -124,7 +124,7 @@ public class SimilarFragment extends Fragment {
                         Log.i("kjvbnkjfbfgkb", "onResponse: "+response);
 
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE,Type.SimilarType.SIMILAR);
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovieType.MOVIE,Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
 
                     }
@@ -158,7 +158,7 @@ public class SimilarFragment extends Fragment {
                             credit.addAll(casts);
                             credit.addAll(crews);
 
-                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
                             similar_recycler.setAdapter(similarAdapter);
                         }
 
@@ -194,7 +194,7 @@ public class SimilarFragment extends Fragment {
                             credit.addAll(casts);
                             credit.addAll(crews);
 
-                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovieType.TVSHOW, Type.SimilarType.SIMILAR);
                             similar_recycler.setAdapter(similarAdapter);
                         }
 
