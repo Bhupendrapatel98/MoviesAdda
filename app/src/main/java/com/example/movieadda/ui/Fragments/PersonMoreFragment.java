@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 import com.example.movieadda.Adapter.CastAdapter;
 import com.example.movieadda.Adapter.TrendingPersonAdapter;
 import com.example.movieadda.Adapter.TrendingPersonListAdapter;
+import com.example.movieadda.Model.SearchModel;
 import com.example.movieadda.Model.TrendingPerson;
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.RetrofitClint;
+import com.example.movieadda.Network.SearchRequest;
 import com.example.movieadda.Network.TrendingReq;
 import com.example.movieadda.R;
 import com.example.movieadda.utils.Type;
@@ -39,13 +41,14 @@ public class PersonMoreFragment extends Fragment {
     TrendingPersonListAdapter adapter;
     int page=1;
     boolean isLoading=false;
+    String query;
 
 
-    public PersonMoreFragment(Type.MovieType type) {
+    public PersonMoreFragment(String query,Type.MovieType type) {
         // Required empty public constructor
         this.type = type;
+        this.query=query;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,13 +67,17 @@ public class PersonMoreFragment extends Fragment {
         if (type==Type.MovieType.TRENDING_PERSON){
             getPersonMore();
         }
+        else if (type==Type.MovieType.SEARCH_PERSON){
+
+            searchPerson();
+        }
 
         addListner();
 
         return view;
     }
 
-    public  void  getPersonMore(){
+    public void getPersonMore(){
 
         RetrofitClint.getRetrofit(Constants.BASE_URL)
                 .create(TrendingReq.class)
@@ -102,6 +109,34 @@ public class PersonMoreFragment extends Fragment {
 
     }
 
+    public void searchPerson(){
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(SearchRequest.class)
+                .getsearchPerson(""+page,query,Constants.key)
+                .enqueue(new Callback<SearchModel>() {
+                    @Override
+                    public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
+
+                        if (page==1){
+
+                            adapter = new TrendingPersonListAdapter(getContext(),response.body().getResults());
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading = false;
+                        page++;
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchModel> call, Throwable t) {
+
+                    }
+                });
+    }
+
     public void addListner(){
 
         more_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -120,7 +155,14 @@ public class PersonMoreFragment extends Fragment {
                         if ((total - 1) == lastVisibleItemCount) {
                             isLoading = true;
 
-                            getPersonMore();
+                            if (type==Type.MovieType.TRENDING_PERSON){
+                                getPersonMore();
+                            }
+                            else if (type==Type.MovieType.SEARCH_PERSON){
+
+                                searchPerson();
+                            }
+
 
                         }
                 }

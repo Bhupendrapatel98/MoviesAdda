@@ -32,8 +32,8 @@ public class SearchViewPager extends FragmentPagerAdapter {
                 return new MoviesMoreFragment(s,Type.MovieType.SEARCH_MOVIE);
             case 1:
                 return new MoviesMoreFragment(s,Type.MovieType.SEARCH_TVSHOW);
-            //case 2:
-               // return new PersonMoreFragment(Type.MovieType.TRENDING_PERSON );
+            case 2:
+                return new PersonMoreFragment(s,Type.MovieType.SEARCH_PERSON);
             default:
                 return null;
         }
@@ -41,7 +41,7 @@ public class SearchViewPager extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     public CharSequence getPageTitle(int position){
@@ -51,8 +51,8 @@ public class SearchViewPager extends FragmentPagerAdapter {
                 return "Movie";
             case 1:
                 return "TV Show";
-            //case 2:
-                //return "People";
+            case 2:
+                return "People";
             default:
                 return null;
         }

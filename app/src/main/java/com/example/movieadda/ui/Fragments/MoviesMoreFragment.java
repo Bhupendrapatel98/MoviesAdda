@@ -95,6 +95,9 @@ public class MoviesMoreFragment extends Fragment {
             case SEARCH_MOVIE:
                 searchMovie();
                 break;
+            case SEARCH_TVSHOW:
+                searchTvShows();
+                break;
         }
 
         addListner();
@@ -279,6 +282,34 @@ public class MoviesMoreFragment extends Fragment {
                 });
     }
 
+    public void searchTvShows(){
+
+        RetrofitClint.getRetrofit(Constants.BASE_URL)
+                .create(SearchRequest.class)
+                .getsearchTv(page+"",query,Constants.key)
+                .enqueue(new Callback<SearchModel>() {
+                    @Override
+                    public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
+
+                        if (page==1) {
+                            adapter = new SimilarAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
+                            more_recycler.setAdapter(adapter);
+                        }
+                        else {
+                            adapter.addAllResilu(response.body().getResults());
+                        }
+                        isLoading =false;
+                        page++;
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchModel> call, Throwable t) {
+
+                    }
+                });
+    }
+
     public void addListner(){
 
             more_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -319,6 +350,9 @@ public class MoviesMoreFragment extends Fragment {
                                         break;
                                     case SEARCH_MOVIE:
                                         searchMovie();
+                                        break;
+                                    case SEARCH_TVSHOW:
+                                        searchTvShows();
                                         break;
                                 }
 

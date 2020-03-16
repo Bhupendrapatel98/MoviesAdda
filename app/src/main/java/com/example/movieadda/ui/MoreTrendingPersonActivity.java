@@ -25,7 +25,7 @@ public class MoreTrendingPersonActivity extends AppCompatActivity {
 
         type =(Type.MovieType) getIntent().getSerializableExtra("movie_key");
 
-        replace(new PersonMoreFragment(type));
+        replace(new PersonMoreFragment("",type));
 
     }
 
