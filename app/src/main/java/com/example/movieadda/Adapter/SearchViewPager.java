@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.movieadda.ui.Fragments.MoviesMoreFragment;
 import com.example.movieadda.ui.Fragments.PersonMoreFragment;
@@ -14,7 +15,7 @@ import com.example.movieadda.ui.Fragments.SimilarFragment;
 import com.example.movieadda.ui.MoreTrendingMoviesActivity;
 import com.example.movieadda.utils.Type;
 
-public class SearchViewPager extends FragmentPagerAdapter {
+public class SearchViewPager extends FragmentStatePagerAdapter {
 
   String s;
 
@@ -28,7 +29,7 @@ public class SearchViewPager extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
 
-            case  0 :
+            case 0:
                 return new MoviesMoreFragment(s,Type.MovieType.SEARCH_MOVIE);
             case 1:
                 return new MoviesMoreFragment(s,Type.MovieType.SEARCH_TVSHOW);

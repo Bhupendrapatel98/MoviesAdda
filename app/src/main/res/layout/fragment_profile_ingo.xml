@@ -103,14 +103,15 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/biography"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="kzdhsdkvudfkibuf"
-        android:textSize="16sp"
-        android:textColor="@color/light_gray"/>
+             <TextView
+                android:id="@+id/biography"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="kzdhsdkvudfkibuf"
+                android:textSize="16sp"
+                android:textColor="@color/light_gray"/>
+
 
     <LinearLayout
         android:orientation="vertical"

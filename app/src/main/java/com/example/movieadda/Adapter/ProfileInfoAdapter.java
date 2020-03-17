@@ -42,7 +42,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProInfoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProInfoViewHolder holder, final int position) {
 
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getFilePath()).into(holder.proinfo_img);
 
@@ -50,7 +50,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, MoviePosterActivity.class);
-                intent.putExtra("images",(ArrayList<Images>) (list));
+                intent.putExtra("images",list.get(position).getFilePath());
                 context.startActivity(intent);
             }
         });

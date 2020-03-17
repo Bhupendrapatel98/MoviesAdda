@@ -48,6 +48,7 @@ public class ProfileIngoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile_ingo, container, false);
 
+
         birthday= view.findViewById(R.id.birthday);
         deathday= view.findViewById(R.id.deathday);
         also_known_as= view.findViewById(R.id.also_known_as);

@@ -48,9 +48,14 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i("mjcbdjjddfdkff", "onClick: "+s_edit.getText().toString());
 
-                s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(),s_edit.getText().toString()));
-                s_viewpage.setOffscreenPageLimit(0);
-                s_tabLayout.setupWithViewPager(s_viewpage);
+                if (s_edit.getText().toString().isEmpty()){
+
+                }
+                else {
+                    s_viewpage.setAdapter(new SearchViewPager(getSupportFragmentManager(), s_edit.getText().toString()));
+                    s_viewpage.setOffscreenPageLimit(0);
+                    s_tabLayout.setupWithViewPager(s_viewpage);
+                }
             }
         });
     }
