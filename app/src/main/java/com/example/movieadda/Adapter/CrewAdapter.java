@@ -20,6 +20,7 @@ public class CrewAdapter extends RecyclerView.Adapter<CrewAdapter.CrewViewHolder
 
     Context context;
     List<CrewModel.Crew> list;
+    int data;
 
     public CrewAdapter(Context context, List<CrewModel.Crew> list) {
         this.context = context;
@@ -36,13 +37,30 @@ public class CrewAdapter extends RecyclerView.Adapter<CrewAdapter.CrewViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CrewViewHolder holder, int position) {
-        holder.name.setText(list.get(position).getName());
+
+        String name = list.get(position).getName();
+
+        if (name.equalsIgnoreCase(list.get(position).getName()))
+        {
+            holder.name.setText(list.get(position).getName());
+        }
+        else {
+            holder.name.setText("");
+        }
         holder.department.setText(list.get(position).getDepartment());
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+
+        if (list.size()>8)
+        {
+             data=8;
+        }
+        else {
+            data=list.size();
+        }
+        return data;
     }
 
     public class CrewViewHolder extends RecyclerView.ViewHolder {
