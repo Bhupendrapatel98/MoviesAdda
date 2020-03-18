@@ -3,7 +3,9 @@ package com.example.movieadda.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Images {
+import java.io.Serializable;
+
+public class Images implements Serializable {
 
         @SerializedName("iso_639_1")
         @Expose
@@ -27,7 +29,20 @@ public class Images {
         @Expose
         private Double aspectRatio;
 
-        public Object getIso6391() {
+    @Override
+    public String toString() {
+        return "Images{" +
+                "iso6391=" + iso6391 +
+                ", width=" + width +
+                ", height=" + height +
+                ", voteCount=" + voteCount +
+                ", voteAverage=" + voteAverage +
+                ", filePath='" + filePath + '\'' +
+                ", aspectRatio=" + aspectRatio +
+                '}';
+    }
+
+    public Object getIso6391() {
             return iso6391;
         }
 

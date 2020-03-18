@@ -2,6 +2,9 @@ package com.example.movieadda.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,15 +49,17 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
 
         Picasso.get().load(Constants.IMAGE_BASE_URL+list.get(position).getFilePath()).into(holder.proinfo_img);
 
+        Log.i("hbvfjvfjjf", "onBindViewHolder: "+list);
         holder.proinfo_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, MoviePosterActivity.class);
+                //imagelist
+                intent.putExtra("img",(ArrayList<Images>)(list));
                 intent.putExtra("images",list.get(position).getFilePath());
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override

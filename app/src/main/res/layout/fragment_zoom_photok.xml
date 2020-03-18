@@ -6,29 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Fragments.ZoomPhotokFragment">
 
-  <!--  <ImageView
+    <ImageView
         android:id="@+id/photos"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ImageView>-->
+    </ImageView>
 
-    <com.jsibbold.zoomage.ZoomageView
+
+    <!--<com.jsibbold.zoomage.ZoomageView
         android:id="@+id/photos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:zoomage_restrictBounds="false"
-        app:zoomage_animateOnReset="true"
-        app:zoomage_autoResetMode="UNDER"
-        app:zoomage_autoCenter="true"
-        app:zoomage_zoomable="true"
-        app:zoomage_translatable="true"
-        app:zoomage_minScale="0.6"
-        app:zoomage_maxScale="8"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        />
+        app:zoomage_restrictBounds="false"
+        app:zoomage_translatable="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoCenter="true"
+        app:zoomage_zoomable="false"
+        app:zoomage_minScale="0.6"
+        app:zoomage_maxScale="8"
+        />-->
 
 </RelativeLayout>

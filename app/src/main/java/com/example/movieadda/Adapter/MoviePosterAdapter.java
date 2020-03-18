@@ -1,5 +1,7 @@
 package com.example.movieadda.Adapter;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,9 +14,9 @@ import java.util.ArrayList;
 
 public class MoviePosterAdapter extends FragmentPagerAdapter {
 
-    String data;
+    ArrayList<Images> data;
 
-    public MoviePosterAdapter(@NonNull FragmentManager fm,String data) {
+    public MoviePosterAdapter(@NonNull FragmentManager fm, ArrayList<Images> data) {
         super(fm);
         this.data = data;
     }
@@ -22,15 +24,13 @@ public class MoviePosterAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return new ZoomPhotokFragment(data);
+        Log.i("vjbgjbngbkg", "getItem: "+data);
+        return new ZoomPhotokFragment(data.get(position).getFilePath());
     }
 
     @Override
     public int getCount() {
-        return data();
+        return data.size();
     }
 
-    private int data() {
-        return 1;
-    }
 }

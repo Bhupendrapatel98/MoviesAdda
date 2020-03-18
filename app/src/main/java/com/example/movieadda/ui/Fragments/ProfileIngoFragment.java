@@ -20,6 +20,7 @@ import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ import retrofit2.Response;
 public class ProfileIngoFragment extends Fragment {
 
     String id;
-    TextView birthday,deathday,also_known_as,biography;
+    TextView birthday,deathday,also_known_as;
+    ExpandableTextView biography;
     RecyclerView pro_info_recycler;
 
     public ProfileIngoFragment(String id) {
@@ -52,8 +54,11 @@ public class ProfileIngoFragment extends Fragment {
         birthday= view.findViewById(R.id.birthday);
         deathday= view.findViewById(R.id.deathday);
         also_known_as= view.findViewById(R.id.also_known_as);
-        biography= view.findViewById(R.id.biography);
+        //biography= view.findViewById(R.id.biography);
         pro_info_recycler= view.findViewById(R.id.pro_info_recycler);
+
+         biography = view.findViewById(R.id.expand_text_view);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         pro_info_recycler.setLayoutManager(layoutManager);

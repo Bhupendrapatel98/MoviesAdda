@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.movieadda.Adapter.MoviePosterAdapter;
@@ -12,6 +13,7 @@ import com.example.movieadda.Model.Images;
 import com.example.movieadda.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MoviePosterActivity extends AppCompatActivity {
 
@@ -24,12 +26,15 @@ public class MoviePosterActivity extends AppCompatActivity {
 
         pager=findViewById(R.id.pager);
 
-        Intent intent = getIntent();
-        String images = intent.getStringExtra("images");
-        Log.i("cghsdg", "onCreate: "+ images);
+//        Intent intent = getIntent();
+//        String images = intent.getStringExtra("images");
+//        Log.i("cghsdg", "onCreate: "+ images);
 
-        pager.setAdapter(new MoviePosterAdapter( getSupportFragmentManager(),images));
-        Log.i("scffdf", "onCreate: "+images);
+        ArrayList<Images> img = (ArrayList<Images>) getIntent().getSerializableExtra("img");
+        Log.i("cghsdg", "onCreate: "+ img);
+
+        pager.setAdapter(new MoviePosterAdapter( getSupportFragmentManager(),img));
+        Log.i("scffdf", "onCreate: "+img);
 
 
 

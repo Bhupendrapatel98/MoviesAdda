@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.example.movieadda.Network.Constants;
 import com.example.movieadda.R;
 import com.jsibbold.zoomage.ZoomageView;
@@ -21,7 +20,7 @@ import com.squareup.picasso.Picasso;
  */
 public class ZoomPhotokFragment extends Fragment {
 
-    ZoomageView photos;
+    ImageView photos;
     String filepath;
 
     public ZoomPhotokFragment(String filePath) {
@@ -39,7 +38,6 @@ public class ZoomPhotokFragment extends Fragment {
         Log.i("mjdckdxfkdf", "onCreateView: "+filepath);
         photos = view.findViewById(R.id.photos);
         Picasso.get().load(Constants.Image_URL+filepath).into(photos);
-
         return view;
     }
 
