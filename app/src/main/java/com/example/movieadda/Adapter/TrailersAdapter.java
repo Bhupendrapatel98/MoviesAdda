@@ -38,13 +38,11 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.Traile
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view =inflater.inflate(R.layout.trailer_item,parent,false);
 
-
-
         return new TrailerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TrailerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TrailerViewHolder holder, final int position) {
 
         String key = "";
         String s = "";
@@ -61,8 +59,10 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.Traile
         holder.trailer_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + video_id));
-//                startActivity(intent);
+                String video_id = list.get(position).getKey();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+video_id));
+                intent.putExtra("VIDEO_ID",video_id);
+                context.startActivity(intent);
             }
         });
     }

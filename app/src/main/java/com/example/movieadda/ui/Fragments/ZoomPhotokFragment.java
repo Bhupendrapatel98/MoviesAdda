@@ -38,6 +38,8 @@ public class ZoomPhotokFragment extends Fragment {
         Log.i("mjdckdxfkdf", "onCreateView: "+filepath);
         photos = view.findViewById(R.id.photos);
         Picasso.get().load(Constants.Image_URL+filepath).into(photos);
+
+
         return view;
     }
 

@@ -56,7 +56,7 @@ public class ProfileInfoAdapter extends RecyclerView.Adapter<ProfileInfoAdapter.
                 Intent intent=new Intent(context, MoviePosterActivity.class);
                 //imagelist
                 intent.putExtra("img",(ArrayList<Images>)(list));
-                intent.putExtra("images",list.get(position).getFilePath());
+                //intent.putExtra("images",list.get(position).getFilePath());
                 context.startActivity(intent);
             }
         });

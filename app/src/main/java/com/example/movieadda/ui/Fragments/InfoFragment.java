@@ -31,6 +31,8 @@ import com.example.movieadda.Network.Constants;
 import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
+import com.example.movieadda.ui.CelebritiesActivity;
+import com.example.movieadda.utils.Type;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,7 +49,7 @@ public class InfoFragment extends Fragment {
     TextView overview,fact_title,status,runtime,release,language,budget,revenue;
     String id;
     RecyclerView btn_recycler,crew_recycler,trailer_recycler;
-    TextView production_com_name,top_title;
+    TextView production_com_name,top_title,crew_showall;
     ImageView backdrop_path,poster_path,bookmark;
 
 
@@ -79,6 +81,7 @@ public class InfoFragment extends Fragment {
         backdrop_path = view.findViewById(R.id.backdrop_path);
         top_title = view.findViewById(R.id.top_title);
         bookmark = view.findViewById(R.id.bookmark);
+        crew_showall = view.findViewById(R.id.crew_showall);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
@@ -89,6 +92,15 @@ public class InfoFragment extends Fragment {
         LinearLayoutManager trailer_layoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
         trailer_recycler.setLayoutManager(trailer_layoutManager);
 
+        crew_showall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            Intent intent = new Intent(getContext(), CelebritiesActivity.class);
+            getContext().startActivity(intent);
+
+        }
+        });
 
         allDetail();
         crew();

@@ -77,7 +77,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/star_icon"/>
+                    android:src="@drawable/rating"/>
 
             <TextView
                 android:layout_marginLeft="8sp"

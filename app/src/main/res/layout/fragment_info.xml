@@ -118,6 +118,7 @@
                 android:textSize="22sp"
                 />
             <TextView
+                android:id="@+id/crew_showall"
                 android:gravity="right"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
