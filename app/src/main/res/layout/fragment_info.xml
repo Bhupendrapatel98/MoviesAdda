@@ -25,16 +25,16 @@
     android:orientation="horizontal">
 
     <LinearLayout
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2019 2hour 3 minutes"
+            android:text=""
             android:textColor="#fff"
             android:textSize="16sp"/>
         <TextView
@@ -57,6 +57,7 @@
         android:layout_marginRight="10dp">
 
         <ImageView
+            android:id="@+id/list"
             android:layout_gravity="center"
             android:layout_width="26dp"
             android:layout_height="26dp"
@@ -69,6 +70,12 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/bookmark"/>
+        <ImageView
+            android:id="@+id/bookmark_white"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/bookmarks"/>
 
     </LinearLayout>
 </LinearLayout>

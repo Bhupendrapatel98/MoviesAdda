@@ -9,50 +9,67 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/bhup"
         />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie Hub"
+            android:text="Movie Adda"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="is created by Bhupendra Patel"
+            android:text="Created By Bhupendra Patel"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Follow"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="#18A521"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
     <LinearLayout
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="50dp">
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/github"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@color/white"/>
+                android:tint="@color/white"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/github"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,15 +81,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/linkedin"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@color/white"/>
+                android:tint="@color/white"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/linkdin"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,15 +104,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/insta"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@color/white"/>
+                android:tint="@color/white"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/instagram"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,15 +127,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/facebook"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@color/white"/>
+                android:tint="@color/white"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/fb"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,5 +150,20 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="#18A521"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
 </LinearLayout>

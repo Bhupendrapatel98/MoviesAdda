@@ -26,10 +26,10 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 
     Context context;
     List<Result> list;
-    Type.MovieType type;
+    Type.MovTv type;
     Type.SimilarType similar;
 
-    public SimilarAdapter(Context context, List<Result> list, Type.MovieType type, Type.SimilarType similar) {
+    public SimilarAdapter(Context context, List<Result> list, Type.MovTv type, Type.SimilarType similar) {
         this.context = context;
         this.list = list;
         this.type=type;
@@ -53,10 +53,19 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
         Log.i("jgfjhgfkggf", "onBindViewHolder1: "+list.get(position).getTitle());
         Log.i("jgfjhgfkggf", "onBindViewHolder2: "+list.get(position).getName());
 
-        if (type==Type.MovieType.MOVIE){
+        if (type==Type.MovTv.MOVIE){
             holder.title.setText(list.get(position).getTitle());
+
+            //get movie year
+//            String yer = list.get(position).getReleaseDate();
+//            String[] y =  yer.split("-");
+//            if (y != null) {
+//                Log.i("dmhbdjfhjd", "onBindViewHolder: " + y[0]);
+//                holder.year.setText(y[0]);
+//            }
+
         }
-        else if (type==Type.MovieType.TVSHOW){
+        else if (type==Type.MovTv.TVSHOW){
 
             holder.title.setText(list.get(position).getOriginal_name());
         }
@@ -77,6 +86,9 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
         holder.main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.i("cbvjhdf", "onClick: "+key);
+
                 Intent intent = new Intent(context, AllDetailActivity.class);
                 intent.putExtra("key_id",key);
                 intent.putExtra("type",type);
@@ -93,7 +105,7 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
     public class SimilarViewHolder extends RecyclerView.ViewHolder {
 
         ImageView backdrop_path;
-        TextView vote_average,title;
+        TextView vote_average,title,year;
         LinearLayout main;
 
         public SimilarViewHolder(@NonNull View itemView) {
@@ -103,6 +115,7 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
             vote_average = itemView.findViewById(R.id.vote_average);
             title = itemView.findViewById(R.id.title);
             main = itemView.findViewById(R.id.main);
+            year = itemView.findViewById(R.id.year);
 
         }
     }

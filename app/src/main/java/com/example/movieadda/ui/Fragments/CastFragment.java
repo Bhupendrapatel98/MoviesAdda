@@ -32,13 +32,13 @@ public class CastFragment extends Fragment {
 
     private RecyclerView cast_recycler;
     String id;
-    Type.MovieType typeM;
-    Type.Credit type;
 
-    public CastFragment(String id,Type.MovieType typeM,Type.Credit type) {
+
+
+    public CastFragment(String id) {
         this.id=id;
-        this.typeM=typeM;
-        this.type=type;
+
+
     }
 
 
@@ -53,16 +53,12 @@ public class CastFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         cast_recycler.setLayoutManager(layoutManager);
 
-        Log.i("mcvbfcjvcfvkf", "onCreateView: "+type);
-        Log.i("mcvbfcjvcfvkf", "onCreateView: "+typeM);
 
-        if (typeM == Type.MovieType.UPCOMING_MOVIES){
+
+
 
             crew();
-        }
-        else {
-            crew();
-        }
+
 
 
         return view;
@@ -79,9 +75,10 @@ public class CastFragment extends Fragment {
 
                         Log.i("zmcbsjdchj", "onResponse: "+response);
                         Log.i("zmcbsjdchj", "onResponse: "+response.body());
-
-                        CastAdapter castAdapter = new CastAdapter(getActivity(),response.body().getCast());
-                        cast_recycler.setAdapter(castAdapter);
+                        if (response.body()!=null) {
+                            CastAdapter castAdapter = new CastAdapter(getActivity(), response.body().getCast());
+                            cast_recycler.setAdapter(castAdapter);
+                        }
                     }
 
                     @Override

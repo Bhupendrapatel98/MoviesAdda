@@ -1,11 +1,28 @@
 package com.example.movieadda.Model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.movieadda.Room.typeconverter.LongConverters;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Entity
+@TypeConverters({LongConverters.class})
 public class Result {
+
+
+    public Result(String name, String posterPath, Long id, String originalTitle, String releaseDate, Double voteAverage) {
+        this.name = name;
+        this.posterPath = posterPath;
+        this.id = id;
+        this.originalTitle = originalTitle;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
+    }
 
     @SerializedName("original_name")
     @Expose
@@ -32,8 +49,10 @@ public class Result {
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
+
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private Long id;
     @SerializedName("adult")
     @Expose

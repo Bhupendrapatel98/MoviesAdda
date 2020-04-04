@@ -28,9 +28,9 @@ public class TrendingMoviesAdapter extends RecyclerView.Adapter<TrendingMoviesAd
 
     Context context;
     List<Result> list;
-    Type.MovieType type;
+    Type.MovTv type;
 
-    public TrendingMoviesAdapter(Context context, List<Result> list, Type.MovieType type) {
+    public TrendingMoviesAdapter(Context context, List<Result> list, Type.MovTv type) {
         this.context = context;
         this.list = list;
         this.type=type;

@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +42,10 @@ public class SearchActivity extends AppCompatActivity {
         search_icon = findViewById(R.id.search_icon);
         s_edit = findViewById(R.id.s_edit);
 
+        //show keyboard autometic
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
         search();
            }
 
@@ -46,6 +54,11 @@ public class SearchActivity extends AppCompatActivity {
         search_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+
                 Log.i("mjcbdjjddfdkff", "onClick: "+s_edit.getText().toString());
 
                 if (s_edit.getText().toString().isEmpty()){

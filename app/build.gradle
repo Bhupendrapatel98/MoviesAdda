@@ -28,16 +28,23 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
 
+    //material component
     implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //circleimageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //slider
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
 
+    //loader
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
 
     configurations.matching { it.name == '_internal_aapt2_binary' }.all { config ->
@@ -46,22 +53,28 @@ dependencies {
         }
     }
 
-    //auto view pager
+    //auto scroll view pager
     implementation 'com.github.pzienowicz:androidx-auto-scroll-view-pager:1.1.0'
-
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
     //room
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     testImplementation "android.arch.persistence.room:testing:1.1.1"
 
+    //stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
+    //lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
 
+    //zoomimage
     implementation 'com.jsibbold:zoomage:1.3.0'
 
+    //textview hide or show
     implementation 'com.ms-square:expandableTextView:0.1.4'
+
+    implementation 'com.wang.avi:library:2.1.3'
+
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 }

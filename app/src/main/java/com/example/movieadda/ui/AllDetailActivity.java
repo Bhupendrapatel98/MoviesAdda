@@ -17,7 +17,8 @@ public class AllDetailActivity extends AppCompatActivity {
     TabLayout tablayout;
     ViewPager viewpager;
     String id;
-    Type.MovieType type;
+    //Type.MovieType type;
+    Type.MovTv type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,10 @@ public class AllDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
          id = intent.getStringExtra("key_id");
 
-         Type.MovieType type = (Type.MovieType) getIntent().getSerializableExtra("type");
+         type = (Type.MovTv) getIntent().getSerializableExtra("type");
 
         Log.i("djbdjkddff", "onCreate: "+type);
         Log.i("djbdjkddff", "onCreate: "+id);
-
-
 
         viewpager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),id,type));
         tablayout.setupWithViewPager(viewpager);

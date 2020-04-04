@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.movieadda.Adapter.SimilarAdapter;
 import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.GenerListModel;
+import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.Model.PersonMoviesModel;
 import com.example.movieadda.Model.Result;
 import com.example.movieadda.Model.SimilarModel;
@@ -24,6 +25,7 @@ import com.example.movieadda.Network.MovieRequest;
 import com.example.movieadda.Network.PersonRequest;
 import com.example.movieadda.Network.RetrofitClint;
 import com.example.movieadda.R;
+import com.example.movieadda.Room.DatabaseClient;
 import com.example.movieadda.utils.Type;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ import retrofit2.Response;
  */
 public class SimilarFragment extends Fragment {
 
-    String id;
+    String id="";
     Type.SimilarType type;
     Type.MovieType movie;
     RecyclerView similar_recycler;
@@ -49,7 +51,6 @@ public class SimilarFragment extends Fragment {
         this.type = type;
         this.movie=movie;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,8 +65,7 @@ public class SimilarFragment extends Fragment {
 
         Log.i("idghnhhjmhj", "onCreateView: "+id);
         Log.i("movieggghgh", "onCreateView: "+type);
-        //Log.i("movieggghgh", "onCreateView: "+movie);
-
+        Log.i("movieggghgh", "onCreateView: "+movie);
 
         if(type == Type.SimilarType.GENER)
         {
@@ -84,9 +84,129 @@ public class SimilarFragment extends Fragment {
             getPersonTvShows();
         }
 
+        else if (type==Type.SimilarType.BOOKMARK){
+
+            if (movie == Type.MovieType.MOVIE) {
+                getBookmarkMovie();
+            }
+            else {
+                getBookmarkTv();
+            }
+        }
+        else if (type==Type.SimilarType.MY_LIST){
+
+            if (movie == Type.MovieType.TVSHOW) {
+                getTvList();
+            }
+            else {
+                getMyList();
+            }
+        }
 
         return view;
     }
+
+    private void getBookmarkTv() {
+
+        List<InfoModel> list = DatabaseClient.getInstance(getContext()).getAppDatabase()
+                .getForBookmarkDao()
+                .getAllBookmarkMovieInfo(Type.MovTv.TVSHOW);
+
+        Log.i("dsfd", "gettvshow: "+list.toString());
+        List<Result> results = new ArrayList<>();
+        for(InfoModel movieInfo : list){
+            Log.i("fhjgjgj", "tvshow: "+234);
+
+            results.add(new Result(movieInfo.getTitle(),
+
+                    movieInfo.getPosterPath(),
+                    movieInfo.getId(),
+                    movieInfo.getOriginalTitle(),
+                    movieInfo.getReleaseDate(),
+                    movieInfo.getVoteAverage()
+            ));
+        }
+        Log.i("sfdgdf", "getBookmarkMovie: "+results.toString());
+        SimilarAdapter adapter = new SimilarAdapter(getContext(), results, Type.MovTv.TVSHOW,Type.SimilarType.BOOKMARK);
+        similar_recycler.setAdapter(adapter);
+    }
+
+    private void getMyList() {
+        List<InfoModel> list = DatabaseClient.getInstance(getContext()).getAppDatabase()
+                .getMovieInfoDao()
+                .getdetail(Type.MovTv.MOVIE,Long.parseLong(id));
+        Log.i("fdddv", "getMovieList: "+list);
+
+        List<Result> results = new ArrayList<>();
+        for(InfoModel movieInfo : list){
+            Log.i("sfdgdf", "getBookmarkMovie: "+546464);
+
+            Log.i("dgdggd", "getMovieList: "+movieInfo.toString());
+            results.add(new Result
+                    (movieInfo.getTitle(),
+                            movieInfo.getPosterPath(),
+                            movieInfo.getId(),
+                            movieInfo.getOriginalTitle(),
+                            movieInfo.getReleaseDate(),
+                            movieInfo.getVoteAverage()
+                    ));
+        }
+        SimilarAdapter adapter = new SimilarAdapter(getContext(), results, Type.MovTv.MOVIE,Type.SimilarType.MY_LIST);
+        similar_recycler.setAdapter(adapter);
+
+    }
+
+    private void getTvList() {
+
+        List<InfoModel> list =DatabaseClient.getInstance(getContext()).getAppDatabase()
+                .getMovieInfoDao()
+                .getdetail(Type.MovTv.TVSHOW,Long.parseLong(id));
+        Log.i("idhudhfudhf", "tv: "+list);
+
+        List<Result> results = new ArrayList<>();
+        for(InfoModel movieInfo : list){
+            Log.i("sfdgdf", "getBookmarkMovie: "+546464);
+
+            Log.i("dgdggd", "getMovieList: "+results);
+            results.add(new Result(movieInfo.getTitle(),
+
+                    movieInfo.getPosterPath(),
+                    movieInfo.getId(),
+                    movieInfo.getOriginalTitle(),
+                    movieInfo.getReleaseDate(),
+                    movieInfo.getVoteAverage()
+            ));
+        }
+        SimilarAdapter adapter = new SimilarAdapter(getContext(), results, Type.MovTv.TVSHOW,Type.SimilarType.MY_LIST);
+        similar_recycler.setAdapter(adapter);
+    }
+
+    private void getBookmarkMovie() {
+
+        List<InfoModel> list = DatabaseClient.getInstance(getContext()).getAppDatabase()
+                .getForBookmarkDao()
+                .getAllBookmarkMovieInfo(Type.MovTv.MOVIE);
+
+        Log.i("sfdgdf", "getBookmarkMovie: "+list.toString());
+        List<Result> results = new ArrayList<>();
+        for(InfoModel movieInfo : list){
+            Log.i("sfdgdf", "getBookmarkMovie: "+546464);
+
+            results.add(new Result(movieInfo.getTitle(),
+
+                    movieInfo.getPosterPath(),
+                    movieInfo.getId(),
+                    movieInfo.getOriginalTitle(),
+                    movieInfo.getReleaseDate(),
+                    movieInfo.getVoteAverage()
+            ));
+        }
+        Log.i("sfdgdf", "getBookmarkMovie: "+results.toString());
+        SimilarAdapter adapter = new SimilarAdapter(getContext(), results, Type.MovTv.MOVIE,Type.SimilarType.BOOKMARK);
+        similar_recycler.setAdapter(adapter);
+        Log.i("sfdgdf", "getBookmarkMovie: "+757565);
+    }
+
 
     private void getGenerList() {
 
@@ -97,7 +217,7 @@ public class SimilarFragment extends Fragment {
                     @Override
                     public void onResponse(Call<GenerListModel> call, Response<GenerListModel> response) {
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
                     }
 
@@ -124,7 +244,7 @@ public class SimilarFragment extends Fragment {
                         Log.i("kjvbnkjfbfgkb", "onResponse: "+response);
 
 
-                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovieType.MOVIE,Type.SimilarType.SIMILAR);
+                        SimilarAdapter similarAdapter = new SimilarAdapter(getContext(),response.body().getResults(),Type.MovTv.MOVIE,Type.SimilarType.SIMILAR);
                         similar_recycler.setAdapter(similarAdapter);
 
                     }
@@ -158,7 +278,7 @@ public class SimilarFragment extends Fragment {
                             credit.addAll(casts);
                             credit.addAll(crews);
 
-                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovieType.MOVIE, Type.SimilarType.SIMILAR);
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.MOVIE, Type.SimilarType.SIMILAR);
                             similar_recycler.setAdapter(similarAdapter);
                         }
 
@@ -194,7 +314,7 @@ public class SimilarFragment extends Fragment {
                             credit.addAll(casts);
                             credit.addAll(crews);
 
-                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovieType.TVSHOW, Type.SimilarType.SIMILAR);
+                            SimilarAdapter similarAdapter = new SimilarAdapter(getContext(), credit, Type.MovTv.TVSHOW, Type.SimilarType.SIMILAR);
                             similar_recycler.setAdapter(similarAdapter);
                         }
 

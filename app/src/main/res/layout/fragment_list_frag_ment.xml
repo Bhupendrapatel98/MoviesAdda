@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Fragments.ListFragMent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Fragments.ListFragMent"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primery_transparent"
+        android:id="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="MovieAdda"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/search"
+                android:id="@+id/msearchicon"/>
+
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_gravity="right"
+        android:id="@+id/tablayoutmtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabMode="auto"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/light_gray" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:clickable="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/background"
+        android:id="@+id/viewpagermtv"/>
 
-</FrameLayout>
+</LinearLayout>

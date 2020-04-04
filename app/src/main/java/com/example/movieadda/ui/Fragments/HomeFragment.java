@@ -1,6 +1,8 @@
 package com.example.movieadda.ui.Fragments;
 
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.movieadda.Adapter.MainSliderAdapter;
@@ -35,6 +39,7 @@ import com.example.movieadda.ui.MoreTrendingPersonActivity;
 import com.example.movieadda.ui.SearchActivity;
 import com.example.movieadda.utils.PicassoImageLoadingService;
 import com.example.movieadda.utils.Type;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +58,8 @@ public class HomeFragment extends Fragment {
     private ImageView search;
     private Slider banner_slider;
 
+    LinearLayout home_wholelayout;
+    AVLoadingIndicatorView avi;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -65,6 +72,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+        home_wholelayout = view.findViewById(R.id.home_wholelayout);
+        avi = view.findViewById(R.id.avi);
         trending_per_more = view.findViewById(R.id.trending_per_more);
         trending_mov_more = view.findViewById(R.id.trending_mov_more);
         trending_tvs_more = view.findViewById(R.id.trending_tvs_more);
@@ -80,6 +90,9 @@ public class HomeFragment extends Fragment {
         popular_mov_recycler = view.findViewById(R.id.popular_mov_recycler);
         top_rat_recycler = view.findViewById(R.id.top_rat_recycler);
         trending_person_recycler = view.findViewById(R.id.trending_person_recycler);
+
+        //start loader
+        startAnim();
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,10 +176,10 @@ public class HomeFragment extends Fragment {
 
         trendingMovies();
         trendingTvShow();
-        upcomigMovie();
         popularMovie();
         topRatedMovie();
         trendingPerson();
+        upcomigMovie();
 
         return view;
     }
@@ -185,6 +198,7 @@ public class HomeFragment extends Fragment {
 
                         TrendingPersonAdapter trendingPersonAdapter = new TrendingPersonAdapter(response.body().getResults(),getContext());
                         trending_person_recycler.setAdapter(trendingPersonAdapter);
+
                     }
 
                     @Override
@@ -206,7 +220,7 @@ public class HomeFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TOP_MOVIES);
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                         top_rat_recycler.setAdapter(adapter);
                     }
 
@@ -228,7 +242,7 @@ public class HomeFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.POPULAR_MOVIES);
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                         popular_mov_recycler.setAdapter(adapter);
                     }
 
@@ -250,9 +264,13 @@ public class HomeFragment extends Fragment {
                         Log.i("msbfcsjdh", "onResponse: " + response);
                         Log.i("msbfcsjdh", "onResponse: " + response.body());
 
-                        upcoming_mov_recycler.setAdapter(new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.UPCOMING_MOVIES));
+                        upcoming_mov_recycler.setAdapter(new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE));
 
                         banner_slider.setAdapter(new MainSliderAdapter(response.body().getResults()));
+
+                        //close loader
+                       stopAnim();
+                        home_wholelayout.setVisibility(View.VISIBLE);
 
                         banner_slider.setOnSlideClickListener(new OnSlideClickListener() {
                             @Override
@@ -261,10 +279,13 @@ public class HomeFragment extends Fragment {
                                 Intent intent=new Intent(getContext(), AllDetailActivity.class);
                                 intent.putExtra("key_id",response.body().getResults().get(position).getId()+"");
                                 Log.i("mjdbnksdjkd", "onSlideClick: "+response.body().getResults().get(position).getId());
-                                intent.putExtra("type",Type.MovieType.UPCOMING_MOVIES);
+                                //intent.putExtra("type",Type.MovieType.UPCOMING_MOVIES);
+                                intent.putExtra("type",Type.MovTv.MOVIE);
                                 startActivity(intent);
                             }
                         });
+
+
                     }
 
                     @Override
@@ -285,7 +306,7 @@ public class HomeFragment extends Fragment {
                         Log.i("zmcbsjdhsvj", "onResponse: " + response);
                         Log.i("zmcbsjdhsvj", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TRENDING_TVSHOW);
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovTv.TVSHOW);
                         trending_tvs_recycler.setAdapter(adapter);
                     }
 
@@ -309,7 +330,7 @@ public class HomeFragment extends Fragment {
                         Log.i("jsdhvjsd", "onResponse: " + response);
                         Log.i("jsdhvjsd", "onResponse: " + response.body());
 
-                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovieType.TRENDING_MOVIE);
+                        TrendingMoviesAdapter adapter = new TrendingMoviesAdapter(getContext(), response.body().getResults(),Type.MovTv.MOVIE);
                         trending_recycler.setAdapter(adapter);
                     }
 
@@ -319,6 +340,14 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
+    }
+
+    void startAnim(){
+        avi.show();
+    }
+
+    void stopAnim(){
+        avi.hide();
     }
 
 
