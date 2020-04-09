@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         internet = findViewById(R.id.internet);
         refreshbtn = findViewById(R.id.refreshbtn);
 
-
        if(isNetworkConnected()==false){
 
            internet.setVisibility(View.VISIBLE);
@@ -75,21 +75,21 @@ public class MainActivity extends AppCompatActivity {
 
                        case R.id.home:
                            Log.i("ckjbnkbg", "onNavigationItemReselected: " + item.getItemId());
-                           replace(new HomeFragment());
+                           replace(new HomeFragment(),"Home");
                            return true;
 
                        case R.id.Search:
-                           replace(new SearchFragment());
+                           replace(new SearchFragment(),"Search");
                            return true;
 
 
                        case R.id.MyLists:
-                           replace(new ListFragMent());
+                           replace(new ListFragMent(),"MyList");
                            return true;
 
 
                        case R.id.Menu:
-                           replace(new MenuFragment());
+                           replace(new MenuFragment(),"Menu");
                            return true;
                    }
                    return false;
@@ -99,10 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
        }
 
-
     void replace(Fragment fragment){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame,fragment);
+        ft.commit();
+    }
+
+    void replace(Fragment fragment,String backstack) {
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        //ft.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top); //set animation
+        ft.addToBackStack(backstack);//back to previous fregment
+        ft.replace(R.id.frame, fragment);
         ft.commit();
     }
 

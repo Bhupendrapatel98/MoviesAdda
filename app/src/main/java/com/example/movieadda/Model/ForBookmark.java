@@ -9,7 +9,7 @@ import com.example.movieadda.Room.typeconverter.MTvConverter;
 import com.example.movieadda.utils.Type;
 
 @Entity(foreignKeys = @ForeignKey(entity = InfoModel.class,
-        parentColumns = "id",
+        parentColumns = "movie_id",
         childColumns = "minfo",
         onDelete = ForeignKey.CASCADE))
 @TypeConverters({MTvConverter.class})

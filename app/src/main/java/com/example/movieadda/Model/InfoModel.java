@@ -1,5 +1,6 @@
 package com.example.movieadda.Model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -87,6 +88,7 @@ public class InfoModel {
 
     @SerializedName("id")
     @Expose
+    @ColumnInfo(name = "movie_id")
     @PrimaryKey
     private Long id;
     @SerializedName("imdb_id")

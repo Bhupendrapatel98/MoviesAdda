@@ -27,10 +27,10 @@ public interface MovieInfoDao {
     @Update
     void update(InfoModel result);
 
-    @Query("SELECT * FROM InfoModel where InfoModel.id == (:id)")
+    @Query("SELECT * FROM InfoModel where InfoModel.movie_id == (:id)")
     List<InfoModel> checkMovieinfo(Long id);
 
-    @Query("Select * FROM  InfoModel INNER JOIN MyListDetail ON  MyListDetail.minfoid==InfoModel.id  Where MyListDetail.type==:type AND mlid==:mylistid ")
+    @Query("Select * FROM  InfoModel INNER JOIN MyListDetail ON  MyListDetail.minfoid==InfoModel.movie_id  Where MyListDetail.type==:type AND mlid==:mylistid ")
     List<InfoModel> getdetail(Type.MovTv type, long mylistid);
 
 }

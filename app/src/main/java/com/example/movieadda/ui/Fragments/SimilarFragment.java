@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.movieadda.Adapter.SimilarAdapter;
-import com.example.movieadda.Model.CrewModel;
 import com.example.movieadda.Model.GenerListModel;
 import com.example.movieadda.Model.InfoModel;
 import com.example.movieadda.Model.PersonMoviesModel;
@@ -117,8 +116,7 @@ public class SimilarFragment extends Fragment {
         for(InfoModel movieInfo : list){
             Log.i("fhjgjgj", "tvshow: "+234);
 
-            results.add(new Result(movieInfo.getTitle(),
-
+            results.add(new Result(movieInfo.getName(),
                     movieInfo.getPosterPath(),
                     movieInfo.getId(),
                     movieInfo.getOriginalTitle(),
@@ -142,6 +140,7 @@ public class SimilarFragment extends Fragment {
             Log.i("sfdgdf", "getBookmarkMovie: "+546464);
 
             Log.i("dgdggd", "getMovieList: "+movieInfo.toString());
+
             results.add(new Result
                     (movieInfo.getTitle(),
                             movieInfo.getPosterPath(),
@@ -167,9 +166,8 @@ public class SimilarFragment extends Fragment {
         for(InfoModel movieInfo : list){
             Log.i("sfdgdf", "getBookmarkMovie: "+546464);
 
-            Log.i("dgdggd", "getMovieList: "+results);
-            results.add(new Result(movieInfo.getTitle(),
-
+            Log.i("mdcbjsd", "getTvList: "+results);
+            results.add(new Result(movieInfo.getName(),
                     movieInfo.getPosterPath(),
                     movieInfo.getId(),
                     movieInfo.getOriginalTitle(),

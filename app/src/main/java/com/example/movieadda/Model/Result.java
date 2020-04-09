@@ -24,6 +24,7 @@ public class Result {
         this.voteAverage = voteAverage;
     }
 
+
     @SerializedName("original_name")
     @Expose
     private String original_name;
@@ -81,6 +82,7 @@ public class Result {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+
 
     public Double getPopularity() {
         return popularity;

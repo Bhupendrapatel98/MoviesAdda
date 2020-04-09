@@ -268,9 +268,10 @@ public class HomeFragment extends Fragment {
 
                         banner_slider.setAdapter(new MainSliderAdapter(response.body().getResults()));
 
-                        //close loader
-                       stopAnim();
                         home_wholelayout.setVisibility(View.VISIBLE);
+
+                        //close loader
+                        stopAnim();
 
                         banner_slider.setOnSlideClickListener(new OnSlideClickListener() {
                             @Override

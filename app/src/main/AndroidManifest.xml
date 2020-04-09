@@ -15,7 +15,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".ui.CelebritiesActivity" />
         <activity android:name=".ui.MoviePosterActivity" />
-        <activity android:name=".ui.SplashActivity">
+        <activity android:name=".ui.SplashActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +34,8 @@
         <activity android:name=".ui.AllDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.MainActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"/>
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />

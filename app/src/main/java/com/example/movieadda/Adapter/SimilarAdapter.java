@@ -53,8 +53,18 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
         Log.i("jgfjhgfkggf", "onBindViewHolder1: "+list.get(position).getTitle());
         Log.i("jgfjhgfkggf", "onBindViewHolder2: "+list.get(position).getName());
 
+        Log.i("dfjkhkdjd", "onBindViewHolder: "+type);
+        Log.i("jdhfbjdfbhdkjfv", "onBindViewHolder: "+similar);
+
+        //for list and book mark
+
         if (type==Type.MovTv.MOVIE){
-            holder.title.setText(list.get(position).getTitle());
+            if (list.get(position).getTitle()==null){
+                holder.title.setText(list.get(position).getOriginalTitle());
+            }
+            else {
+                holder.title.setText(list.get(position).getTitle());
+            }
 
             //get movie year
 //            String yer = list.get(position).getReleaseDate();
@@ -63,14 +73,20 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarV
 //                Log.i("dmhbdjfhjd", "onBindViewHolder: " + y[0]);
 //                holder.year.setText(y[0]);
 //            }
-
         }
         else if (type==Type.MovTv.TVSHOW){
 
-            holder.title.setText(list.get(position).getOriginal_name());
+            if (list.get(position).getOriginal_name()==null){
+                holder.title.setText(list.get(position).getName());
+            }
+            else {
+                holder.title.setText(list.get(position).getOriginal_name());
+            }
+
         }
         else {
             holder.title.setText(list.get(position).getName());
+            Log.i("smcjbnksdj", "onBindViewHolder4: "+list.get(position).getName());
         }
 
        /* if (list.get(position).getTitle()==null) {

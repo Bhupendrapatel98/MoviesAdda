@@ -19,7 +19,7 @@ import com.example.movieadda.utils.Type;
                         childColumns = "mlid"),
 
                 @ForeignKey(entity = InfoModel.class,
-                        parentColumns="id",
+                        parentColumns="movie_id",
                         childColumns = "minfoid"),
 
 

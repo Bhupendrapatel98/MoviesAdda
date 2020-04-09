@@ -27,7 +27,7 @@ public interface  ForBookmarkDao {
     @Update
     void update(ForBookmark bookmark);
 
-    @Query("SELECT * FROM InfoModel INNER JOIN ForBookmark ON InfoModel.id == ForBookmark.minfo WHERE ForBookmark.type == (:type)")
+    @Query("SELECT * FROM InfoModel INNER JOIN ForBookmark ON InfoModel.movie_id == ForBookmark.minfo WHERE ForBookmark.type == (:type)")
     List<InfoModel> getAllBookmarkMovieInfo(Type.MovTv type);
 
     @Query("SELECT * FROM ForBookmark WHERE ForBookmark.minfo==(:mid) ")
